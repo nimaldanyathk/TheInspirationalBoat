@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jupiter: The King of Planets | Educational Space Portal</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-bg: #f9f9f9;
+            --jupiter-color: #e0a864;
+            --dark-jupiter: #b87333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #111;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: relative;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--jupiter-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--jupiter-color);
+        }
+        
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #000000, #1a1a2e);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('jupiterimage.webp') no-repeat center center/cover;
+            opacity: 0.7;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #c0392b;
+        }
+        
+        .main-content {
+            background-color: white;
+            padding: 4rem 0;
+        }
+        
+        .section {
+            padding: 2rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background-color: var(--jupiter-color);
+            bottom: -10px;
+            left: 25%;
+        }
+        
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .fact-card {
+            background-color: var(--light-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .fact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .fact-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        
+        .fact-card p {
+            color: var(--text-color);
+        }
+        
+        .icon {
+            font-size: 2.5rem;
+            color: var(--jupiter-color);
+            margin-bottom: 1rem;
+        }
+        
+        .tabs {
+            margin-top: 2rem;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .tab-button {
+            background-color: var(--light-bg);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin: 0 0.5rem;
+            border-radius: 5px;
+        }
+        
+        .tab-button.active {
+            background-color: var(--jupiter-color);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 2rem;
+            background-color: var(--light-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .tab-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .tab-content ul {
+            margin-left: 1.5rem;
+        }
+        
+        .tab-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .tab-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 1rem 0;
+            border-radius: 10px;
+        }
+        
+        .moons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .moon-card {
+            text-align: center;
+            background-color: var(--light-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .moon-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--jupiter-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: white;
+            border: 4px solid var(--jupiter-color);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -13px;
+        }
+        
+        .right::after {
+            left: -13px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: var(--light-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .quiz-container {
+            background-color: var(--light-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .question {
+            margin-bottom: 2rem;
+        }
+        
+        .question h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        
+        .option {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .option:hover {
+            background-color: #eeeeee;
+        }
+        
+        .option.correct {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .option.incorrect {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .submit-btn {
+            display: block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 2rem auto 0;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #c0392b;
+        }
+        
+        .result {
+            text-align: center;
+            margin-top: 2rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: none;
+        }
+        
+        .interactive-jupiter {
+            position: relative;
+            height: 500px;
+            width: 100%;
+            overflow: hidden;
+            background-color: #111;
+            margin: 2rem 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .planet {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle at 30% 30%, var(--jupiter-color), var(--dark-jupiter));
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: -20px -20px 50px rgba(0, 0, 0, 0.5) inset;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .planet::before {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            top: 50%;
+            left: -25px;
+            transform: rotate(10deg);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+        
+        .planet::after {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            top: 30%;
+            left: -25px;
+            transform: rotate(-5deg);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+        
+        .hotspot {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: rgba(255, 0, 0, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        
+        .hotspot:hover {
+            transform: scale(1.2);
+            background-color: rgba(255, 0, 0, 0.8);
+        }
+        
+        .info-panel {
+            position: absolute;
+            width: 300px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        
+        .info-panel.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 1rem 0;
+        }
+        
+        .footer-links li {
+            margin: 0 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--jupiter-color);
+        }
+        
+        .social-icons {
+            margin: 1rem 0;
+        }
+        
+        .social-icons a {
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: var(--jupiter-color);
+        }
+        
+        .copyright {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .fact-card {
+                margin-bottom: 1rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .left::after, .right::after {
+                left: 18px;
+            }
+            
+            .right {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-planet-ringed"></i>
+                    Space<span>Explorer</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#facts">Facts</a></li>
+                    <li><a href="#moons">Moons</a></li>
+                    <li><a href="#exploration">Exploration</a></li>
+                    <li><a href="#quiz">Quiz</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Jupiter: The King of Planets</h1>
+            <p>Explore the largest planet in our solar system, a gas giant with fascinating features and mysteries.</p>
+            <a href="#facts" class="cta-button">Discover More</a>
+        </div>
+    </section>
+    
+    <section class="main-content">
+        <div class="container">
+            <section id="facts" class="section">
+                <div class="section-title">
+                    <h2>Fascinating Facts</h2>
+                </div>
+                <p>Jupiter is the fifth planet from the Sun and the largest in our Solar System. It's a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times the mass of all the other planets in the Solar System combined.</p>
+                
+                <div class="facts-grid">
+                    <div class="fact-card">
+                        <div class="icon"><i class="fas fa-ruler"></i></div>
+                        <h3>Size & Mass</h3>
+                        <p>Jupiter's diameter is 142,984 km, about 11 times that of Earth. Its mass is 1.898 × 10^27 kg, which is 318 times Earth's mass.</p>
+                    </div>
+                    
+                    <div class="fact-card">
+                        <div class="icon"><i class="fas fa-cloud"></i></div>
+                        <h3>Atmosphere</h3>
+                        <p>Jupiter's atmosphere is composed primarily of hydrogen (89%) and helium (10%), with trace amounts of methane, ammonia, and water. The iconic colorful bands are clouds of ammonia and water.</p>
+                    </div>
+                    
+                    <div class="fact-card">
+                        <div class="icon"><i class="fas fa-clock"></i></div>
+                        <h3>Rapid Rotation</h3>
+                        <p>Jupiter has the shortest day of all the planets, completing a rotation in just under 10 hours. This rapid rotation causes the planet to bulge at the equator and flatten at the poles.</p>
+                    </div>
+                    
+                    <div class="fact-card">
+                        <div class="icon"><i class="fas fa-bullseye"></i></div>
+                        <h3>Great Red Spot</h3>
+                        <p>The Great Red Spot is a persistent high-pressure region in Jupiter's atmosphere, producing an anticyclonic storm that has existed for at least 400 years. It's large enough to contain 2-3 Earths.</p>
+                    </div>
+                    
+                    <div class="fact-card">
+                        <div class="icon"><i class="fas fa-ring"></i></div>
+                        <h3>Ring System</h3>
+                        <p>Jupiter has a faint planetary ring system made of dust particles ejected from its small inner moons when they're struck by meteoroid impacts.</p>
+                    </div>
+                    
+                    <div class="fact-card">
+                        <div class="icon"><i class="fas fa-bolt"></i></div>
+                        <h3>Powerful Magnetic Field</h3>
+                        <p>Jupiter's magnetic field is 14 times stronger than Earth's, making it the strongest in the solar system apart from sunspots. It creates enormous radiation belts around the planet.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <div class="section-title">
+                    <h2>Jupiter's Structure</h2>
+                </div>
+                
+                <div class="tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-button active" data-tab="atmosphere">Atmosphere</button>
+                        <button class="tab-button" data-tab="interior">Interior</button>
+                        <button class="tab-button" data-tab="magnetosphere">Magnetosphere</button>
+                    </div>
+                    
+                    <div id="atmosphere" class="tab-content active">
+                        <h3>Atmosphere Composition and Features</h3>
+                        <p>Jupiter's upper atmosphere is composed of about 88–92% hydrogen and 8–12% helium by percent volume of gas molecules, with traces of methane, water vapor, ammonia, and silicon-based compounds. There may also be traces of carbon, ethane, hydrogen sulfide, neon, oxygen, phosphine, and sulfur.</p>
+                        <p>The visible cloud deck is organized into bands of different latitudes, known as tropical regions. These are sub-divided into lighter-hued zones and darker belts. The interactions of these conflicting circulation patterns cause storms and turbulence.</p>
+                        <ul>
+                            <li><strong>Cloud Layers:</strong> Multiple cloud layers exist with different compositions based on temperature and pressure ranges</li>
+                            <li><strong>Wind Speeds:</strong> Can reach up to 620 km/h (385 mph)</li>
+                            <li><strong>Great Red Spot:</strong> A persistent anticyclonic storm that has been observed for over 400 years</li>
+                            <li><strong>Polar Auroras:</strong> Jupiter has powerful auroras that never cease and are hundreds of times more powerful than Earth's</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="interior" class="tab-content">
+                        <h3>Jupiter's Inner Structure</h3>
+                        <p>Jupiter's interior is believed to consist of:</p>
+                        <ul>
+                            <li><strong>Core:</strong> A dense core of uncertain composition, possibly rocky material amounting to 10–30 Earth masses</li>
+                            <li><strong>Metallic Hydrogen Layer:</strong> Surrounding the core is a layer of liquid metallic hydrogen, which extends outward to about 78% of the radius of the planet</li>
+                            <li><strong>Molecular Hydrogen Layer:</strong> Above the metallic hydrogen layer is a transparent interior atmosphere of liquid hydrogen and helium</li>
+                            <li><strong>Cloud Layer:</strong> The outermost layer spans about 50 km and consists of the visible cloud deck</li>
+                        </ul>
+                        <p>Jupiter's core temperature is estimated to be around 24,000°C (43,000°F), which is hotter than the surface of the Sun. This extreme heat is generated and maintained by the Kelvin-Helmholtz mechanism, the slow gravitational compression of the planet.</p>
+                    </div>
+                    
+                    <div id="magnetosphere" class="tab-content">
+                        <h3>Jupiter's Powerful Magnetosphere</h3>
+                        <p>Jupiter's magnetic field is 14 times stronger than Earth's, making it the strongest in the solar system among the planets. The magnetic field traps charged particles creating intense radiation belts similar to Earth's Van Allen belts, but far stronger.</p>
+                        <ul>
+                            <li><strong>Size:</strong> Jupiter's magnetosphere extends 7 million kilometers in the Sun's direction and almost to Saturn's orbit in the opposite direction</li>
+                            <li><strong>Radiation Belts:</strong> Contains high-energy particles that can damage spacecraft and would be lethal to unprotected humans</li>
+                            <li><strong>Interaction with Io:</strong> The innermost Galilean moon Io is a major source of particles for the magnetosphere as volcanic activity ejects material into space</li>
+                            <li><strong>Radio Emissions:</strong> Jupiter is a powerful source of radio waves, primarily generated by interactions with Io</li>
+                        </ul>
+                        <p>The magnetosphere also creates the most spectacular and permanent aurora in the Solar System, observed in both visible light and other parts of the electromagnetic spectrum.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="moons" class="section">
+                <div class="section-title">
+                    <h2>Moons of Jupiter</h2>
+                </div>
+                <p>Jupiter has at least 79 moons, with the four largest ones known as the Galilean moons: Io, Europa, Ganymede, and Callisto. These were first observed by Galileo Galilei in 1610.</p>
+                
+                <div class="moons-grid">
+                    <div class="moon-card">
+                        <img src="/api/placeholder/200/200" alt="Io">
+                        <h3>Io</h3>
+                        <p>The most volcanically active body in the Solar System, with hundreds of active volcanoes due to tidal heating from Jupiter's gravitational pull.</p>
+                    </div>
+                    
+                    <div class="moon-card">
+                        <img src="/api/placeholder/200/200" alt="Europa">
+                        <h3>Europa</h3>
+                        <p>Covered by a smooth layer of ice, with strong evidence for a subsurface ocean of liquid water. A prime candidate for potential extraterrestrial life.</p>
+                    </div>
+                    
+                    <div class="moon-card">
+                        <img src="/api/placeholder/200/200" alt="Ganymede">
+                        <h3>Ganymede</h3>
+                        <p>The largest moon in our Solar System, even bigger than Mercury. It has its own magnetic field and likely contains an underground saltwater ocean.</p>
+                    </div>
+                    
+                    <div class="moon-card">
+                        <img src="/api/placeholder/200/200" alt="Callisto">
+                        <h3>Callisto</h3>
+                        <p>Heavily cratered and ancient surface, showing little signs of internal activity. It's thought to have a subsurface ocean as well.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="exploration" class="section">
+                <div class="section-title">
+                    <h2>Exploration History</h2>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>1973: Pioneer 10</h3>
+                            <p>The first spacecraft to fly by Jupiter, providing the first close-up images of the planet and valuable information about its radiation environment.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>1979: Voyager 1 & 2</h3>
+                            <p>Conducted detailed studies of Jupiter and its moons, discovering Jupiter's rings, volcanic activity on Io, and details about the Great Red Spot.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>1995-2003: Galileo Mission</h3>
+                            <p>The first spacecraft to orbit Jupiter, it provided extensive data about the planet's atmosphere and dropped a probe directly into Jupiter's atmosphere.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>2016-Present: Juno Mission</h3>
+                            <p>Currently studying Jupiter's composition, gravitational field, magnetic field, and polar magnetosphere to understand the planet's origin and evolution.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>Future: Europa Clipper</h3>
+                            <p>NASA's planned mission to Jupiter's moon Europa, scheduled to launch in the 2020s to study its potential habitability.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <div class="section-title">
+                    <h2>Interactive Jupiter</h2>
+                </div>
+                
+                <div class="interactive-jupiter">
+                    <div class="planet"></div>
+                    <div class="hotspot" style="top: 40%; left: 40%;" data-info="great-red-spot"></div>
+                    <div class="hotspot" style="top: 30%; left: 60%;" data-info="polar-auroras"></div>
+                    <div class="hotspot" style="top: 50%; left: 55%;" data-info="bands"></div>
+                    
+                    <div id="great-red-spot" class="info-panel">
+                        <h3>Great Red Spot</h3>
+                        <p>A persistent high-pressure region in Jupiter's atmosphere producing an anticyclonic storm that has existed for at least 400 years. It's large enough to contain 2-3 Earths.</p>
+                    </div>
+                    
+                    <div id="polar-auroras" class="info-panel">
+                        <h3>Polar Auroras</h3>
+                        <p>Jupiter has powerful auroras that never cease. They're hundreds of times more powerful than Earth's auroras and are created by interactions between Jupiter's magnetosphere and the solar wind.</p>
+                    </div>
+                    
+                    <div id="bands" class="info-panel">
+                        <h3>Cloud Bands</h3>
+                        <p>The colorful bands of Jupiter are different clouds at various heights, temperatures, and compositions. The light zones are ammonia clouds at higher altitudes, while the dark belts are clouds at lower altitudes.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="quiz" class="section">
+                <div class="section-title">
+                    <h2>Test Your Knowledge</h2>
+                </div>
+                
+                <div class="quiz-container">
+                    <div class="question">
+                        <h3>1. What is Jupiter's position from the Sun?</h3>
+                        <div class="options">
+                            <div class="option" data-correct="false">Fourth planet</div>
+                            <div class="option" data-correct="true">Fifth planet</div>
+                            <div class="option" data-correct="false">Sixth planet</div>
+                            <div class="option" data-correct="false">Seventh planet</div>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <h3>2. What is the Great Red Spot?</h3>
+                        <div class="options">
+                            <div class="option" data-correct="false">A volcanic crater</div>
+                            <div class="option" data-correct="false">An impact crater from an asteroid</div>
+                            <div class="option" data-correct="true">A giant storm system</div>
+                            <div class="option" data-correct="false">A large mountain range</div>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <h3>3. Which of these is NOT one of Jupiter's Galilean moons?</h3>
+                        <div class="options">
+                            <div class="option" data-correct="false">Europa</div>
+                            <div class="option" data-correct="false">Callisto</div>
+                            <div class="option" data-correct="false">Io</div>
+                            <div class="option" data-correct="true">Titan</div>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <h3>4. How long does it take Jupiter to complete one orbit around the Sun?</h3>
+                        <div class="options">
+                            <div class="option" data-correct="false">5.2 Earth days</div>
+                            <div class="option" data-correct="false">5.2 Earth months</div>
+                            <div class="option" data-correct="true">11.86 Earth years</div>
+                            <div class="option" data-correct="false">29.5 Earth years</div>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <h3>5. What is Jupiter primarily composed of?</h3>
+                        <div class="options">
+                            <div class="option" data-correct="true">Hydrogen and helium</div>
+                            <div class="option" data-correct="false">Rock and metal</div>
+                            <div class="option" data-correct="false">Water ice and methane</div>
+                            <div class="option" data-correct="false">Carbon dioxide and nitrogen</div>
+                        </div>
+                    </div>
+                    
+                    <button class="submit-btn">Submit Answers</button>
+                    
+                    <div class="result">
+                        You scored: <span class="score">0</span>/5
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <div class="section-title">
+                    <h2>Jupiter's Role in Our Solar System</h2>
+                </div>
+                
+                <p>Jupiter plays a crucial role in the dynamics and evolution of our solar system:</p>
+                
+                <div class="facts-grid">
+                    <div class="fact-card">
+                        <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3>Cosmic Shield</h3>
+                        <p>Jupiter acts as a "cosmic vacuum cleaner" or shield for Earth, its strong gravitational field attracting and absorbing comets and asteroids that might otherwise head toward the inner solar system.</p>
+                    </div>
+                    
+                    <div class="fact-card">
+                        <div class="icon"><i class="fas fa-balance-scale"></i></div>
+                        <h3>Orbital Stabilizer</h3>
+                        <p>The planet's gravitational influence helps stabilize the orbits of other planets in our solar system, contributing to the long-term stability that has allowed life to evolve on Earth.</p>
+                    </div>
+                    
+                    <div class="fact-card">
+                        <div class="icon"><i class="fas fa-microchip"></i></div>
+                        <h3>Laboratory for Gas Giant Physics</h3>
+                        <p>Studying Jupiter helps scientists understand the physics of gas giants, which are the most common type of exoplanet discovered around other stars in our galaxy.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <div class="section-title">
+                    <h2>Jupiter in Culture and Mythology</h2>
+                </div>
+                
+                <p>Jupiter has fascinated humans throughout history and has been prominent in mythology, astrology, and popular culture:</p>
+                
+                <div class="facts-grid">
+                    <div class="fact-card">
+                        <div class="icon"><i class="fas fa-book"></i></div>
+                        <h3>Roman Mythology</h3>
+                        <p>The planet is named after Jupiter (Zeus in Greek mythology), the king of the Roman gods. This naming is appropriate as Jupiter is the largest planet in our solar system.</p>
+                    </div>
+                    
+                    <div class="fact-card">
+                        <div class="icon"><i class="fas fa-star"></i></div>
+                        <h3>Astrological Significance</h3>
+                        <p>In astrology, Jupiter is associated with growth, prosperity, good fortune, and wisdom. It's often called the "Greater Benefic" due to its believed positive influence.</p>
+                    </div>
+                    
+                    <div class="fact-card">
+                        <div class="icon"><i class="fas fa-film"></i></div>
+                        <h3>In Popular Culture</h3>
+                        <p>Jupiter and its moons feature prominently in science fiction, including Arthur C. Clarke's "2001: A Space Odyssey" series and countless other books, films, and games.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>Learn more about our fascinating solar system and the wonders of Jupiter.</p>
+                
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+                
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                
+                <p class="copyright">© 2025 SpaceExplorer Educational Portal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                button.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Interactive Jupiter hotspots
+        const hotspots = document.querySelectorAll('.hotspot');
+        const infoPanels = document.querySelectorAll('.info-panel');
+        
+        hotspots.forEach(hotspot => {
+            hotspot.addEventListener('mouseenter', () => {
+                const infoId = hotspot.getAttribute('data-info');
+                const infoPanel = document.getElementById(infoId);
+                
+                // Position the info panel near the hotspot
+                const hotspotRect = hotspot.getBoundingClientRect();
+                const jupiterRect = document.querySelector('.interactive-jupiter').getBoundingClientRect();
+                
+                infoPanel.style.top = (hotspot.offsetTop - 20) + 'px';
+                infoPanel.style.left = (hotspot.offsetLeft + 40) + 'px';
+                
+                infoPanels.forEach(panel => panel.classList.remove('active'));
+                infoPanel.classList.add('active');
+            });
+        });
+        
+        document.querySelector('.interactive-jupiter').addEventListener('mouseleave', () => {
+            infoPanels.forEach(panel => panel.classList.remove('active'));
+        });
+        
+        // Quiz functionality
+        const quizOptions = document.querySelectorAll('.option');
+        const submitBtn = document.querySelector('.submit-btn');
+        const resultDisplay = document.querySelector('.result');
+        const scoreDisplay = document.querySelector('.score');
+        
+        submitBtn.addEventListener('click', () => {
+            let score = 0;
+            
+            quizOptions.forEach(option => {
+                // Remove any previous results
+                option.classList.remove('correct', 'incorrect');
+                
+                // Check if this option was selected
+                const isSelected = option.classList.contains('selected');
+                const isCorrect = option.getAttribute('data-correct') === 'true';
+                
+                if (isSelected && isCorrect) {
+                    score++;
+                    option.classList.add('correct');
+                } else if (isSelected && !isCorrect) {
+                    option.classList.add('incorrect');
+                } else if (!isSelected && isCorrect) {
+                    // Highlight the correct answer
+                    option.classList.add('correct');
+                }
+            });
+            
+            // Display the result
+            scoreDisplay.textContent = score;
+            resultDisplay.style.display = 'block';
+        });
+        
+        // Make options selectable
+        quizOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Deselect siblings
+                const siblings = Array.from(option.parentElement.children);
+                siblings.forEach(sibling => sibling.classList.remove('selected'));
+                
+                // Select this option
+                option.classList.add('selected');
+            });
+        });
+        
+        // Planet rotation animation
+        const planet = document.querySelector('.planet');
+        let rotation = 0;
+        
+        function rotatePlanet() {
+            rotation += 0.1;
+            planet.style.backgroundPosition = rotation + 'px 0';
+            requestAnimationFrame(rotatePlanet);
+        }
+        
+        rotatePlanet();
+        
+        // Add smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</body>
+</html>

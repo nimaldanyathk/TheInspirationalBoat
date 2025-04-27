@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)file:///D:/HTML%20Project/interactivegames.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Space Games - The Inspirational Boat</title>
+    <link rel="icon" href="file:///D:/HTML%20Project/tipp.png" type="image/png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        
+        @font-face {
+            font-family: 'Reospec';
+            src: url('fonts/Reospec.otf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: radial-gradient(circle, rgba(10,10,25,1) 0%, rgba(2,2,10,1) 100%);
+            color: white;
+            font-family: 'Reospec', sans-serif;
+            transition: all 0.5s;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.7;
+            animation: moveStars 60s linear infinite;
+        }
+        
+        @keyframes moveStars {
+            from { background-position: 0 0; }
+            to { background-position: -500px 500px; }
+        }
+        
+        .cosmic-dust {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ0cmFuc3BhcmVudCIvPjxjaXJjbGUgY3g9IjEwIiBjeT0iMTAiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4zKSIvPjxjaXJjbGUgY3g9IjQwIiBjeT0iNjAiIHI9IjAuNSIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjIpIi8+PGNpcmNsZSBjeD0iNzAiIGN5PSIyMCIgcj0iMC43IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMykiLz48Y2lyY2xlIGN4PSI5MCIgY3k9IjgwIiByPSIwLjgiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4yKSIvPjwvc3ZnPg==');
+            z-index: -1;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        header {
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            animation: glow 3s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6; }
+            to { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #0073e6, 0 0 40px #0073e6; }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .game-card {
+            background: rgba(20, 20, 50, 0.5);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.4s, box-shadow 0.4s;
+            -webkit-backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+        }
+        
+        .game-image {
+            width: 100%;
+            height: 180px;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .game-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7));
+        }
+        
+        .game-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .game-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #00ccff;
+        }
+        
+        .game-description {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .play-btn {
+            background: linear-gradient(45deg, #00ccff, #0073e6);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            align-self: center;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 204, 255, 0.7);
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            transition: background 0.3s, transform 0.3s;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+        
+        .cosmic-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(10vw);
+                opacity: 0;
+            }
+        }
+        
+        .pulse-effect {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(rgba(0, 204, 255, 0.5), transparent);
+            opacity: 0;
+            animation: pulse 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0.7; }
+            70% { transform: translate(-50%, -50%) scale(5); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background: rgba(20, 20, 50, 0.9);
+            width: 90%;
+            max-width: 900px;
+            border-radius: 15px;
+            padding: 30px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 204, 255, 0.3);
+            box-shadow: 0 0 40px rgba(0, 204, 255, 0.3);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        
+        #game-iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 10px;
+            background: #000;
+        }
+        
+        #solar-system-game {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .planet {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            position: absolute;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .planet:hover {
+            transform: scale(1.2);
+        }
+        
+        .planet-mercury { background: linear-gradient(#8C7853, #C0C0C0); }
+        .planet-venus { background: linear-gradient(#FF9900, #FF6600); }
+        .planet-earth { background: linear-gradient(#0099FF, #006600); }
+        .planet-mars { background: linear-gradient(#FF3300, #CC0000); }
+        .planet-jupiter { background: linear-gradient(#FFCC66, #FF9933); }
+        .planet-saturn { background: linear-gradient(#FFD700, #DAA520); }
+        .planet-uranus { background: linear-gradient(#66CCFF, #3399FF); }
+        .planet-neptune { background: linear-gradient(#0066FF, #0033CC); }
+        
+        .meteor {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            box-shadow: 0 0 10px white, 0 0 20px white;
+            opacity: 0;
+            animation: meteor 2s linear;
+        }
+        
+        @keyframes meteor {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) rotate(45deg) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(400px, 400px) rotate(45deg) scale(0.2);
+            }
+        }
+        
+        #blackhole-game {
+            width: 100%;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+            margin-top: 20px;
+            border-radius: 15px;
+        }
+        
+        .blackhole {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: #000;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 
+                0 0 10px 5px rgba(0, 0, 0, 0.7),
+                0 0 20px 10px rgba(0, 0, 0, 0.5),
+                0 0 30px 15px rgba(0, 0, 0, 0.3),
+                0 0 40px 20px rgba(0, 0, 0, 0.1);
+            animation: pulse-black 4s infinite;
+        }
+        
+        @keyframes pulse-black {
+            0% { box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.7), 0 0 20px 10px rgba(0, 0, 0, 0.5); }
+            50% { box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.7), 0 0 40px 20px rgba(0, 0, 0, 0.5); }
+            100% { box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.7), 0 0 20px 10px rgba(0, 0, 0, 0.5); }
+        }
+        
+        .star-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 5px white;
+        }
+        
+        #galaxy-game {
+            width: 100%;
+            height: 500px;
+            background: #000;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+        
+        .galaxy {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.3) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px rgba(255,255,255,0.3);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .galaxy-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+        }
+        
+        .comet {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white, 0 0 5px 10px rgba(255,255,255,0.1);
+            animation: comet-move 10s linear infinite;
+        }
+        
+        @keyframes comet-move {
+            from { transform: translate(-100px, -100px); }
+            to { transform: translate(500px, 500px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"><div style="position: absolute; width: 2.4787527630290827px; height: 2.4787527630290827px; background: white; border-radius: 50%; left: 2.2818745149884467%; top: 28.676747622647202%; opacity: 0.43918781559676573;"></div><div style="position: absolute; width: 2.560719439700156px; height: 2.560719439700156px; background: white; border-radius: 50%; left: 19.987078927258437%; top: 39.343959887803436%; opacity: 0.7237439759629298;"></div><div style="position: absolute; width: 1.8256125057868209px; height: 1.8256125057868209px; background: white; border-radius: 50%; left: 97.7777277626216%; top: 88.5045938863414%; opacity: 0.45060408920381195;"></div><div style="position: absolute; width: 1.7259368778997621px; height: 1.7259368778997621px; background: white; border-radius: 50%; left: 0.2501615009347091%; top: 44.31165667350976%; opacity: 0.7433667405566398;"></div><div style="position: absolute; width: 1.4900120913812192px; height: 1.4900120913812192px; background: white; border-radius: 50%; left: 28.534931908604833%; top: 61.16452119912055%; opacity: 0.7216495162058609;"></div><div style="position: absolute; width: 2.9570729005783565px; height: 2.9570729005783565px; background: white; border-radius: 50%; left: 61.02922788689151%; top: 79.17751875005771%; opacity: 0.32972825470122574;"></div><div style="position: absolute; width: 2.151259741590671px; height: 2.151259741590671px; background: white; border-radius: 50%; left: 2.194387930401276%; top: 63.363876424417185%; opacity: 0.5827772031016762;"></div><div style="position: absolute; width: 2.934984152509469px; height: 2.934984152509469px; background: white; border-radius: 50%; left: 80.31217656042828%; top: 78.22313245646772%; opacity: 0.6293586181176778;"></div><div style="position: absolute; width: 1.1106301385768549px; height: 1.1106301385768549px; background: white; border-radius: 50%; left: 36.12885451687276%; top: 4.650954610476266%; opacity: 0.6971721299016256;"></div><div style="position: absolute; width: 2.5747664059880995px; height: 2.5747664059880995px; background: white; border-radius: 50%; left: 70.74151895121692%; top: 54.10233689624773%; opacity: 0.72957424475077;"></div><div style="position: absolute; width: 1.0718980657492536px; height: 1.0718980657492536px; background: white; border-radius: 50%; left: 63.813262508133285%; top: 43.06931217123431%; opacity: 0.5976290782680711;"></div><div style="position: absolute; width: 2.98360491895275px; height: 2.98360491895275px; background: white; border-radius: 50%; left: 67.32688890178467%; top: 65.55360511056321%; opacity: 0.45474756171304836;"></div><div style="position: absolute; width: 2.82589078076343px; height: 2.82589078076343px; background: white; border-radius: 50%; left: 12.1067848267149%; top: 72.0113671882489%; opacity: 0.3248025455709202;"></div><div style="position: absolute; width: 2.01455168911792px; height: 2.01455168911792px; background: white; border-radius: 50%; left: 21.24877847015856%; top: 43.66653973417802%; opacity: 0.41220862736769553;"></div><div style="position: absolute; width: 1.6293602047551041px; height: 1.6293602047551041px; background: white; border-radius: 50%; left: 92.80027767748263%; top: 61.4680424457418%; opacity: 0.7989822245411378;"></div><div style="position: absolute; width: 1.3608029597082933px; height: 1.3608029597082933px; background: white; border-radius: 50%; left: 28.25736519926356%; top: 17.532948153190418%; opacity: 0.35375859122690595;"></div><div style="position: absolute; width: 1.5770040738826356px; height: 1.5770040738826356px; background: white; border-radius: 50%; left: 43.57704212087956%; top: 31.68101866313673%; opacity: 0.41081886434977316;"></div><div style="position: absolute; width: 2.6675838798562275px; height: 2.6675838798562275px; background: white; border-radius: 50%; left: 72.23052182938193%; top: 39.00305155038664%; opacity: 0.7850343341592532;"></div><div style="position: absolute; width: 2.670241905628483px; height: 2.670241905628483px; background: white; border-radius: 50%; left: 2.332415077503658%; top: 63.879221105415375%; opacity: 0.570849238342535;"></div><div style="position: absolute; width: 2.8972372673001376px; height: 2.8972372673001376px; background: white; border-radius: 50%; left: 6.042140303828347%; top: 74.78106333284632%; opacity: 0.3661706072042114;"></div><div style="position: absolute; width: 2.670184682448201px; height: 2.670184682448201px; background: white; border-radius: 50%; left: 88.74397385056605%; top: 35.30713825114529%; opacity: 0.33766767168856354;"></div><div style="position: absolute; width: 2.0783156782193344px; height: 2.0783156782193344px; background: white; border-radius: 50%; left: 38.1020304175462%; top: 14.245197921168673%; opacity: 0.435993361558571;"></div><div style="position: absolute; width: 2.925686739077723px; height: 2.925686739077723px; background: white; border-radius: 50%; left: 36.56434930282808%; top: 59.62674856464321%; opacity: 0.696563116042682;"></div><div style="position: absolute; width: 1.8078203692864454px; height: 1.8078203692864454px; background: white; border-radius: 50%; left: 24.211520775849827%; top: 30.723072040457655%; opacity: 0.5591432314254594;"></div><div style="position: absolute; width: 2.7949142900447828px; height: 2.7949142900447828px; background: white; border-radius: 50%; left: 20.007304202300435%; top: 19.47365884299648%; opacity: 0.772984370024953;"></div><div style="position: absolute; width: 2.0647755374509624px; height: 2.0647755374509624px; background: white; border-radius: 50%; left: 50.04413102238314%; top: 38.93899228304585%; opacity: 0.3881537083932339;"></div><div style="position: absolute; width: 1.8981249895607628px; height: 1.8981249895607628px; background: white; border-radius: 50%; left: 64.84349938841936%; top: 28.390295787472365%; opacity: 0.5412088863036577;"></div><div style="position: absolute; width: 2.594012021883516px; height: 2.594012021883516px; background: white; border-radius: 50%; left: 54.86620939380711%; top: 47.30441837542108%; opacity: 0.5814684746414656;"></div><div style="position: absolute; width: 2.6631551365426045px; height: 2.6631551365426045px; background: white; border-radius: 50%; left: 6.971971185682202%; top: 62.27595034691473%; opacity: 0.614802121278224;"></div><div style="position: absolute; width: 2.438640004394314px; height: 2.438640004394314px; background: white; border-radius: 50%; left: 54.688412930489115%; top: 33.430759687501286%; opacity: 0.5226978939876801;"></div><div style="position: absolute; width: 1.1635187151783573px; height: 1.1635187151783573px; background: white; border-radius: 50%; left: 66.22651589011485%; top: 65.51952487182385%; opacity: 0.476256676217698;"></div><div style="position: absolute; width: 1.5717069401052743px; height: 1.5717069401052743px; background: white; border-radius: 50%; left: 99.83895926372774%; top: 11.553998812377486%; opacity: 0.7805747317294889;"></div><div style="position: absolute; width: 2.2267445238408126px; height: 2.2267445238408126px; background: white; border-radius: 50%; left: 60.09335456744829%; top: 26.907697328904412%; opacity: 0.7801103567929975;"></div><div style="position: absolute; width: 1.9943625465535022px; height: 1.9943625465535022px; background: white; border-radius: 50%; left: 54.27205564805788%; top: 96.73806089408272%; opacity: 0.35936232457737033;"></div><div style="position: absolute; width: 2.942615763652309px; height: 2.942615763652309px; background: white; border-radius: 50%; left: 44.17768231854016%; top: 86.67389547285138%; opacity: 0.4695610867265608;"></div><div style="position: absolute; width: 1.2359482245589102px; height: 1.2359482245589102px; background: white; border-radius: 50%; left: 14.571862559896287%; top: 20.43304514104445%; opacity: 0.31849860522860945;"></div><div style="position: absolute; width: 2.932098338821662px; height: 2.932098338821662px; background: white; border-radius: 50%; left: 70.26768093137868%; top: 84.83689564796484%; opacity: 0.5267228436768561;"></div><div style="position: absolute; width: 2.281419047381598px; height: 2.281419047381598px; background: white; border-radius: 50%; left: 5.193887527863472%; top: 46.69445598404898%; opacity: 0.7410854343075182;"></div><div style="position: absolute; width: 2.3613696620933795px; height: 2.3613696620933795px; background: white; border-radius: 50%; left: 95.04621907944244%; top: 88.16139384316327%; opacity: 0.3484557771553303;"></div><div style="position: absolute; width: 1.9412201652589092px; height: 1.9412201652589092px; background: white; border-radius: 50%; left: 10.855310945185881%; top: 62.125634994541066%; opacity: 0.49068973636860597;"></div><div style="position: absolute; width: 1.5219365920860923px; height: 1.5219365920860923px; background: white; border-radius: 50%; left: 39.96775472725289%; top: 93.24347722204904%; opacity: 0.6393421856119725;"></div><div style="position: absolute; width: 2.7361671004357686px; height: 2.7361671004357686px; background: white; border-radius: 50%; left: 17.996100968808705%; top: 64.6374265350269%; opacity: 0.7031434219811594;"></div><div style="position: absolute; width: 2.6474997344827345px; height: 2.6474997344827345px; background: white; border-radius: 50%; left: 29.16875286711269%; top: 44.33938161514577%; opacity: 0.42756690254732205;"></div><div style="position: absolute; width: 1.8192239627769582px; height: 1.8192239627769582px; background: white; border-radius: 50%; left: 75.03895655203598%; top: 13.157183370496828%; opacity: 0.3221278618292393;"></div><div style="position: absolute; width: 1.8594952271997043px; height: 1.8594952271997043px; background: white; border-radius: 50%; left: 43.525326728439474%; top: 39.34356448426184%; opacity: 0.6156637945888663;"></div><div style="position: absolute; width: 1.8054038604660487px; height: 1.8054038604660487px; background: white; border-radius: 50%; left: 26.976519987306546%; top: 5.599441207160538%; opacity: 0.7323512665068415;"></div><div style="position: absolute; width: 1.9466504251003807px; height: 1.9466504251003807px; background: white; border-radius: 50%; left: 44.81241511219021%; top: 0.45859863732660155%; opacity: 0.654131864096601;"></div><div style="position: absolute; width: 1.4943856105240427px; height: 1.4943856105240427px; background: white; border-radius: 50%; left: 53.21429977812044%; top: 22.881681373365524%; opacity: 0.7782763287164498;"></div><div style="position: absolute; width: 1.939084938030987px; height: 1.939084938030987px; background: white; border-radius: 50%; left: 84.98423497009016%; top: 85.06126964880127%; opacity: 0.4036499266912121;"></div><div style="position: absolute; width: 1.3179633062215066px; height: 1.3179633062215066px; background: white; border-radius: 50%; left: 31.704381692425176%; top: 77.40884203044338%; opacity: 0.5214696394891671;"></div><div style="position: absolute; width: 2.531082023593541px; height: 2.531082023593541px; background: white; border-radius: 50%; left: 29.684543301186437%; top: 31.5255385213552%; opacity: 0.3395166313838612;"></div><div style="position: absolute; width: 2.7041336583724105px; height: 2.7041336583724105px; background: white; border-radius: 50%; left: 53.06953535205887%; top: 92.73317682656743%; opacity: 0.5026866109740855;"></div><div style="position: absolute; width: 1.1217140007902517px; height: 1.1217140007902517px; background: white; border-radius: 50%; left: 36.94942252582316%; top: 39.61037641353868%; opacity: 0.6916950196689868;"></div><div style="position: absolute; width: 1.1150182814582767px; height: 1.1150182814582767px; background: white; border-radius: 50%; left: 61.391119431572626%; top: 45.068310238660445%; opacity: 0.7071064139775733;"></div><div style="position: absolute; width: 2.228698311759592px; height: 2.228698311759592px; background: white; border-radius: 50%; left: 35.79611883447069%; top: 16.09455271782203%; opacity: 0.6087787582852833;"></div><div style="position: absolute; width: 2.5906046598218393px; height: 2.5906046598218393px; background: white; border-radius: 50%; left: 11.300698361990591%; top: 66.90593344137253%; opacity: 0.47623453903279184;"></div><div style="position: absolute; width: 1.8018590434193218px; height: 1.8018590434193218px; background: white; border-radius: 50%; left: 18.38922591627359%; top: 83.04166333524199%; opacity: 0.3568581164345798;"></div><div style="position: absolute; width: 2.0560720699416586px; height: 2.0560720699416586px; background: white; border-radius: 50%; left: 68.54927788042886%; top: 82.75413492383521%; opacity: 0.5791489330788226;"></div><div style="position: absolute; width: 1.8740191933860442px; height: 1.8740191933860442px; background: white; border-radius: 50%; left: 67.04933990663702%; top: 73.6416396217479%; opacity: 0.6763330484635448;"></div><div style="position: absolute; width: 1.0601590830775298px; height: 1.0601590830775298px; background: white; border-radius: 50%; left: 11.929367184273598%; top: 10.181641725993874%; opacity: 0.393944323369078;"></div><div style="position: absolute; width: 2.6162342772915204px; height: 2.6162342772915204px; background: white; border-radius: 50%; left: 84.6598881419486%; top: 82.62362209466905%; opacity: 0.32679538878751363;"></div><div style="position: absolute; width: 1.6667622433890235px; height: 1.6667622433890235px; background: white; border-radius: 50%; left: 70.84162150180804%; top: 3.217433776870271%; opacity: 0.4704301187169911;"></div><div style="position: absolute; width: 2.2822759108375457px; height: 2.2822759108375457px; background: white; border-radius: 50%; left: 13.458702764036513%; top: 49.929141696357604%; opacity: 0.37562509065405153;"></div><div style="position: absolute; width: 2.382826783146817px; height: 2.382826783146817px; background: white; border-radius: 50%; left: 32.493481253645015%; top: 26.608117213446334%; opacity: 0.7851162394790143;"></div><div style="position: absolute; width: 2.19487646646px; height: 2.19487646646px; background: white; border-radius: 50%; left: 90.15221029304068%; top: 6.343644020478734%; opacity: 0.5775990052236577;"></div><div style="position: absolute; width: 1.28026741534871px; height: 1.28026741534871px; background: white; border-radius: 50%; left: 38.83986242889881%; top: 60.733751196250374%; opacity: 0.37743080254844613;"></div><div style="position: absolute; width: 1.924171398001305px; height: 1.924171398001305px; background: white; border-radius: 50%; left: 85.40284090259927%; top: 95.1326653071806%; opacity: 0.5659165638157087;"></div><div style="position: absolute; width: 1.1056710390059674px; height: 1.1056710390059674px; background: white; border-radius: 50%; left: 80.68931452878154%; top: 22.69933191318372%; opacity: 0.6176016411893113;"></div><div style="position: absolute; width: 2.8653894572264256px; height: 2.8653894572264256px; background: white; border-radius: 50%; left: 99.45948956380532%; top: 64.99454631594612%; opacity: 0.4808120022582156;"></div><div style="position: absolute; width: 2.020841710601345px; height: 2.020841710601345px; background: white; border-radius: 50%; left: 88.43069357536402%; top: 5.7202032970920635%; opacity: 0.4660658553626948;"></div><div style="position: absolute; width: 2.0200149651415678px; height: 2.0200149651415678px; background: white; border-radius: 50%; left: 32.81959907862992%; top: 6.507608580391211%; opacity: 0.36007184703586576;"></div><div style="position: absolute; width: 2.390005290052975px; height: 2.390005290052975px; background: white; border-radius: 50%; left: 35.994362228502695%; top: 73.87498993488377%; opacity: 0.536202395015428;"></div><div style="position: absolute; width: 2.443857071110408px; height: 2.443857071110408px; background: white; border-radius: 50%; left: 46.38864654096477%; top: 38.811620198794%; opacity: 0.701611378469956;"></div><div style="position: absolute; width: 2.3730325710650337px; height: 2.3730325710650337px; background: white; border-radius: 50%; left: 4.154937376235246%; top: 18.000990666042526%; opacity: 0.5969096742338127;"></div><div style="position: absolute; width: 1.5271973511362753px; height: 1.5271973511362753px; background: white; border-radius: 50%; left: 78.85892477918979%; top: 76.27688990311876%; opacity: 0.7298321508603012;"></div><div style="position: absolute; width: 1.7655593144443222px; height: 1.7655593144443222px; background: white; border-radius: 50%; left: 0.3967849966064918%; top: 25.681425690610894%; opacity: 0.7000014393734559;"></div><div style="position: absolute; width: 1.672544683707633px; height: 1.672544683707633px; background: white; border-radius: 50%; left: 55.81944083034356%; top: 6.825313416129797%; opacity: 0.6850935312715676;"></div><div style="position: absolute; width: 1.9249154647703857px; height: 1.9249154647703857px; background: white; border-radius: 50%; left: 87.07917247178796%; top: 53.26682482031207%; opacity: 0.3264954183077297;"></div><div style="position: absolute; width: 1.5964569538657187px; height: 1.5964569538657187px; background: white; border-radius: 50%; left: 68.89315776453215%; top: 77.52409253501764%; opacity: 0.4612095918115236;"></div><div style="position: absolute; width: 1.4217790672580728px; height: 1.4217790672580728px; background: white; border-radius: 50%; left: 82.08536754056%; top: 43.87847890828655%; opacity: 0.7382374440535766;"></div><div style="position: absolute; width: 1.8169085910945806px; height: 1.8169085910945806px; background: white; border-radius: 50%; left: 44.801771373352665%; top: 45.1536943071672%; opacity: 0.5804355357544448;"></div><div style="position: absolute; width: 2.714613712839702px; height: 2.714613712839702px; background: white; border-radius: 50%; left: 30.43084261194844%; top: 62.15785041890711%; opacity: 0.5938418059103012;"></div><div style="position: absolute; width: 1.6005600147856307px; height: 1.6005600147856307px; background: white; border-radius: 50%; left: 85.73465355843067%; top: 15.521200752030516%; opacity: 0.41562620288514046;"></div><div style="position: absolute; width: 1.206745869472949px; height: 1.206745869472949px; background: white; border-radius: 50%; left: 3.911532986714006%; top: 79.3151838468758%; opacity: 0.35358313638847844;"></div><div style="position: absolute; width: 1.9688781913159148px; height: 1.9688781913159148px; background: white; border-radius: 50%; left: 89.6780313444383%; top: 95.18335360267433%; opacity: 0.5828424291006256;"></div><div style="position: absolute; width: 1.2415350652928896px; height: 1.2415350652928896px; background: white; border-radius: 50%; left: 23.195322852400224%; top: 83.39477707456575%; opacity: 0.41747019417240544;"></div><div style="position: absolute; width: 2.5860841594264716px; height: 2.5860841594264716px; background: white; border-radius: 50%; left: 20.312056172052294%; top: 27.258667219435573%; opacity: 0.77974196159981;"></div><div style="position: absolute; width: 2.6216858625257164px; height: 2.6216858625257164px; background: white; border-radius: 50%; left: 36.54126411864247%; top: 83.028653570575%; opacity: 0.38882174745330117;"></div><div style="position: absolute; width: 1.9269241237295227px; height: 1.9269241237295227px; background: white; border-radius: 50%; left: 97.02448415312324%; top: 65.694345855753%; opacity: 0.7926724835415695;"></div><div style="position: absolute; width: 1.381286476619492px; height: 1.381286476619492px; background: white; border-radius: 50%; left: 52.28197915231294%; top: 23.25643964931594%; opacity: 0.3305154141399121;"></div><div style="position: absolute; width: 2.3517719740635705px; height: 2.3517719740635705px; background: white; border-radius: 50%; left: 38.25140909562683%; top: 47.165104203456345%; opacity: 0.5034943367780595;"></div><div style="position: absolute; width: 1.2165098294823302px; height: 1.2165098294823302px; background: white; border-radius: 50%; left: 94.03111353730237%; top: 61.26241049973391%; opacity: 0.469229819157101;"></div><div style="position: absolute; width: 2.4979044103914325px; height: 2.4979044103914325px; background: white; border-radius: 50%; left: 4.512713969434379%; top: 67.78651595794756%; opacity: 0.5053423410171265;"></div><div style="position: absolute; width: 1.5375214818916572px; height: 1.5375214818916572px; background: white; border-radius: 50%; left: 83.33299126137315%; top: 56.194390275661156%; opacity: 0.34747064475729045;"></div><div style="position: absolute; width: 2.4268949340972936px; height: 2.4268949340972936px; background: white; border-radius: 50%; left: 88.329032666919%; top: 79.47084455682294%; opacity: 0.5670870800092345;"></div><div style="position: absolute; width: 1.5067129163889166px; height: 1.5067129163889166px; background: white; border-radius: 50%; left: 87.67550178294753%; top: 95.78895967295904%; opacity: 0.5532351363654728;"></div><div style="position: absolute; width: 2.3156323106625267px; height: 2.3156323106625267px; background: white; border-radius: 50%; left: 11.69306282564846%; top: 93.23915667935525%; opacity: 0.6132314875270122;"></div><div style="position: absolute; width: 1.2872007881962815px; height: 1.2872007881962815px; background: white; border-radius: 50%; left: 93.93504210240226%; top: 24.545393499299628%; opacity: 0.4474142678497747;"></div><div style="position: absolute; width: 2.378069108160515px; height: 2.378069108160515px; background: white; border-radius: 50%; left: 61.638491174091484%; top: 31.099419398141094%; opacity: 0.6415766052689824;"></div><div style="position: absolute; width: 2.636970565618878px; height: 2.636970565618878px; background: white; border-radius: 50%; left: 36.21243405494947%; top: 9.672493766788293%; opacity: 0.7115514510196066;"></div><div style="position: absolute; width: 1.7344950628162525px; height: 1.7344950628162525px; background: white; border-radius: 50%; left: 49.51229032397582%; top: 5.186536047526791%; opacity: 0.6977323007174896;"></div><div style="position: absolute; width: 1.8590394659622578px; height: 1.8590394659622578px; background: white; border-radius: 50%; left: 93.5709153237223%; top: 65.04492931930666%; opacity: 0.5988387234583947;"></div><div style="position: absolute; width: 1.8917022474412386px; height: 1.8917022474412386px; background: white; border-radius: 50%; left: 2.481531233946588%; top: 11.010472864825015%; opacity: 0.6734978822308557;"></div><div style="position: absolute; width: 2.9281259382561666px; height: 2.9281259382561666px; background: white; border-radius: 50%; left: 53.70596351773473%; top: 79.97121452530797%; opacity: 0.7741528460302551;"></div><div style="position: absolute; width: 1.149238390294717px; height: 1.149238390294717px; background: white; border-radius: 50%; left: 3.4735311393987667%; top: 65.27006313721773%; opacity: 0.7310405522719718;"></div><div style="position: absolute; width: 2.873376746126401px; height: 2.873376746126401px; background: white; border-radius: 50%; left: 56.138667315195214%; top: 41.46810818155895%; opacity: 0.3709397051957844;"></div><div style="position: absolute; width: 1.2134188014746035px; height: 1.2134188014746035px; background: white; border-radius: 50%; left: 30.77004485641075%; top: 49.12507721865946%; opacity: 0.7102513122011433;"></div><div style="position: absolute; width: 2.8213396733011504px; height: 2.8213396733011504px; background: white; border-radius: 50%; left: 74.56721690425631%; top: 45.14281918910683%; opacity: 0.6641918578684305;"></div><div style="position: absolute; width: 2.3113318516345007px; height: 2.3113318516345007px; background: white; border-radius: 50%; left: 74.76547522394522%; top: 58.782011958209736%; opacity: 0.6057179873814333;"></div><div style="position: absolute; width: 2.5736596021519156px; height: 2.5736596021519156px; background: white; border-radius: 50%; left: 37.78891811813185%; top: 41.961452492156035%; opacity: 0.34715770947544305;"></div><div style="position: absolute; width: 2.480544998123429px; height: 2.480544998123429px; background: white; border-radius: 50%; left: 98.90197928021247%; top: 90.17706692253%; opacity: 0.6906027591065691;"></div><div style="position: absolute; width: 1.5091024339678905px; height: 1.5091024339678905px; background: white; border-radius: 50%; left: 22.73810789387729%; top: 81.68240385216265%; opacity: 0.7531685121283058;"></div><div style="position: absolute; width: 1.247184551078926px; height: 1.247184551078926px; background: white; border-radius: 50%; left: 19.709894332369558%; top: 47.436932691016075%; opacity: 0.4589167179417733;"></div><div style="position: absolute; width: 2.104211246111217px; height: 2.104211246111217px; background: white; border-radius: 50%; left: 48.42650480348287%; top: 28.744770002121832%; opacity: 0.4975202510939499;"></div><div style="position: absolute; width: 1.2269530759500897px; height: 1.2269530759500897px; background: white; border-radius: 50%; left: 28.855886401164632%; top: 97.41230819822215%; opacity: 0.44172738608520296;"></div><div style="position: absolute; width: 2.3215437166813393px; height: 2.3215437166813393px; background: white; border-radius: 50%; left: 39.22188905128239%; top: 12.414703636081104%; opacity: 0.5441920653572518;"></div><div style="position: absolute; width: 1.5764780445192415px; height: 1.5764780445192415px; background: white; border-radius: 50%; left: 69.99258435734754%; top: 71.93191362338105%; opacity: 0.4143048521018537;"></div><div style="position: absolute; width: 2.3534038510386193px; height: 2.3534038510386193px; background: white; border-radius: 50%; left: 54.4327391724877%; top: 89.45426658718883%; opacity: 0.33727111157485407;"></div><div style="position: absolute; width: 2.978486548334251px; height: 2.978486548334251px; background: white; border-radius: 50%; left: 1.1658898013323649%; top: 21.267375801592237%; opacity: 0.445750373152662;"></div><div style="position: absolute; width: 2.3229720198763832px; height: 2.3229720198763832px; background: white; border-radius: 50%; left: 94.62899051296796%; top: 27.130509837893158%; opacity: 0.6481687916130183;"></div><div style="position: absolute; width: 1.4976479490504753px; height: 1.4976479490504753px; background: white; border-radius: 50%; left: 73.77624740757159%; top: 47.52929186222985%; opacity: 0.6569936425678571;"></div><div style="position: absolute; width: 1.219771820389854px; height: 1.219771820389854px; background: white; border-radius: 50%; left: 77.49317197724174%; top: 6.042919551091863%; opacity: 0.64752729371289;"></div><div style="position: absolute; width: 2.5579005423870567px; height: 2.5579005423870567px; background: white; border-radius: 50%; left: 74.61548789913968%; top: 98.3688773468106%; opacity: 0.41229839866430856;"></div><div style="position: absolute; width: 2.9347911375060503px; height: 2.9347911375060503px; background: white; border-radius: 50%; left: 50.26568539731879%; top: 70.83598088320913%; opacity: 0.42065041257023467;"></div><div style="position: absolute; width: 2.9601060025977572px; height: 2.9601060025977572px; background: white; border-radius: 50%; left: 25.830894941792558%; top: 84.62961168894007%; opacity: 0.524772805714975;"></div><div style="position: absolute; width: 2.493774433183304px; height: 2.493774433183304px; background: white; border-radius: 50%; left: 28.842813054394%; top: 17.893276883955835%; opacity: 0.5098357117422461;"></div><div style="position: absolute; width: 2.263188577319243px; height: 2.263188577319243px; background: white; border-radius: 50%; left: 18.918895474318287%; top: 13.442310118855772%; opacity: 0.43713486962808895;"></div><div style="position: absolute; width: 1.6415627508015347px; height: 1.6415627508015347px; background: white; border-radius: 50%; left: 3.8878573970187125%; top: 40.560081425077385%; opacity: 0.3986181712584295;"></div><div style="position: absolute; width: 1.4416955533749949px; height: 1.4416955533749949px; background: white; border-radius: 50%; left: 34.98509318901575%; top: 83.39930421317341%; opacity: 0.735591657423051;"></div><div style="position: absolute; width: 2.2472320991802173px; height: 2.2472320991802173px; background: white; border-radius: 50%; left: 46.409979017253676%; top: 69.60212433279382%; opacity: 0.5603288181819408;"></div><div style="position: absolute; width: 2.7757889816228545px; height: 2.7757889816228545px; background: white; border-radius: 50%; left: 80.24528824778541%; top: 2.6050944135601606%; opacity: 0.5798980634037292;"></div><div style="position: absolute; width: 2.15440061143693px; height: 2.15440061143693px; background: white; border-radius: 50%; left: 84.07281393671246%; top: 14.279632291616306%; opacity: 0.7471398646349081;"></div><div style="position: absolute; width: 2.561327941454478px; height: 2.561327941454478px; background: white; border-radius: 50%; left: 13.199091096639059%; top: 20.16917270117533%; opacity: 0.3504751232800249;"></div><div style="position: absolute; width: 1.8168481020097431px; height: 1.8168481020097431px; background: white; border-radius: 50%; left: 2.4504359397331976%; top: 81.96344073369946%; opacity: 0.6229199915111086;"></div><div style="position: absolute; width: 2.0379133078828042px; height: 2.0379133078828042px; background: white; border-radius: 50%; left: 60.437950269100725%; top: 40.90852098798579%; opacity: 0.5745201286277721;"></div><div style="position: absolute; width: 1.2764410444877061px; height: 1.2764410444877061px; background: white; border-radius: 50%; left: 17.56940498409245%; top: 85.7702115569686%; opacity: 0.582346868865417;"></div><div style="position: absolute; width: 1.5623288274795302px; height: 1.5623288274795302px; background: white; border-radius: 50%; left: 6.631347888492867%; top: 57.193979872864695%; opacity: 0.6775282064092945;"></div><div style="position: absolute; width: 2.1109778555889003px; height: 2.1109778555889003px; background: white; border-radius: 50%; left: 2.606943707313425%; top: 93.06715013676812%; opacity: 0.59632762058846;"></div><div style="position: absolute; width: 2.999695664322756px; height: 2.999695664322756px; background: white; border-radius: 50%; left: 14.957395848621102%; top: 41.48903729116009%; opacity: 0.7634588736138546;"></div><div style="position: absolute; width: 2.493199400943266px; height: 2.493199400943266px; background: white; border-radius: 50%; left: 45.30126012757052%; top: 39.87789949452254%; opacity: 0.44335199365055206;"></div><div style="position: absolute; width: 1.3069779949440532px; height: 1.3069779949440532px; background: white; border-radius: 50%; left: 17.22551892575921%; top: 34.156958578929796%; opacity: 0.7424633742048721;"></div><div style="position: absolute; width: 2.3229737548862692px; height: 2.3229737548862692px; background: white; border-radius: 50%; left: 26.300728718692913%; top: 63.672474446383134%; opacity: 0.5173610066798502;"></div><div style="position: absolute; width: 1.9730035520717992px; height: 1.9730035520717992px; background: white; border-radius: 50%; left: 34.99689448308989%; top: 86.84664942833436%; opacity: 0.7690680187028858;"></div><div style="position: absolute; width: 2.2675405854995034px; height: 2.2675405854995034px; background: white; border-radius: 50%; left: 29.099930469542468%; top: 16.13772814459551%; opacity: 0.7599945267352624;"></div><div style="position: absolute; width: 2.9025755387978567px; height: 2.9025755387978567px; background: white; border-radius: 50%; left: 67.10809114302248%; top: 44.64664654949597%; opacity: 0.5250543038193509;"></div><div style="position: absolute; width: 2.2259935416392778px; height: 2.2259935416392778px; background: white; border-radius: 50%; left: 77.35631660894025%; top: 45.615001929823464%; opacity: 0.3966806792571204;"></div><div style="position: absolute; width: 1.0626512293339383px; height: 1.0626512293339383px; background: white; border-radius: 50%; left: 49.607304086826474%; top: 59.982728187637704%; opacity: 0.626115921496446;"></div><div style="position: absolute; width: 1.7943805110142033px; height: 1.7943805110142033px; background: white; border-radius: 50%; left: 62.63262494474251%; top: 36.84376010954193%; opacity: 0.5999418023014191;"></div><div style="position: absolute; width: 1.6036721565954957px; height: 1.6036721565954957px; background: white; border-radius: 50%; left: 94.25645049766153%; top: 30.512236900341705%; opacity: 0.33353456745091875;"></div><div style="position: absolute; width: 2.7256649768304175px; height: 2.7256649768304175px; background: white; border-radius: 50%; left: 34.83886220028553%; top: 6.1659519571106935%; opacity: 0.6784527534477902;"></div><div style="position: absolute; width: 2.8266945256514653px; height: 2.8266945256514653px; background: white; border-radius: 50%; left: 24.574805376485266%; top: 54.90687320558951%; opacity: 0.5412828081139014;"></div><div style="position: absolute; width: 2.2066095894732936px; height: 2.2066095894732936px; background: white; border-radius: 50%; left: 74.31030719439289%; top: 0.26765041426708436%; opacity: 0.6099123314604098;"></div><div style="position: absolute; width: 1.7329661285699367px; height: 1.7329661285699367px; background: white; border-radius: 50%; left: 76.59533058338495%; top: 37.35042541991675%; opacity: 0.4311539320001169;"></div><div style="position: absolute; width: 1.1777625181548554px; height: 1.1777625181548554px; background: white; border-radius: 50%; left: 60.145566431790186%; top: 91.23442651310893%; opacity: 0.3361922017622602;"></div><div style="position: absolute; width: 1.1171209718631925px; height: 1.1171209718631925px; background: white; border-radius: 50%; left: 39.07586897018254%; top: 67.0348495912236%; opacity: 0.7938854098562507;"></div><div style="position: absolute; width: 1.1252310939699006px; height: 1.1252310939699006px; background: white; border-radius: 50%; left: 56.76178324903167%; top: 39.94281175698633%; opacity: 0.7153370940265649;"></div><div style="position: absolute; width: 2.606904386807062px; height: 2.606904386807062px; background: white; border-radius: 50%; left: 4.366267572444937%; top: 52.55183279701689%; opacity: 0.4218175115025104;"></div><div style="position: absolute; width: 2.6918285790417436px; height: 2.6918285790417436px; background: white; border-radius: 50%; left: 83.17915434658019%; top: 94.54004757432793%; opacity: 0.4536426191156722;"></div><div style="position: absolute; width: 1.6092533928590531px; height: 1.6092533928590531px; background: white; border-radius: 50%; left: 45.706718709770925%; top: 85.77663765333246%; opacity: 0.3114396017306397;"></div><div style="position: absolute; width: 2.468176459546633px; height: 2.468176459546633px; background: white; border-radius: 50%; left: 61.12265746621326%; top: 52.10604234312663%; opacity: 0.3254334258142972;"></div><div style="position: absolute; width: 2.9529186353059305px; height: 2.9529186353059305px; background: white; border-radius: 50%; left: 0.3245586602882433%; top: 82.7243348081167%; opacity: 0.30617812951818174;"></div><div style="position: absolute; width: 1.09132787154235px; height: 1.09132787154235px; background: white; border-radius: 50%; left: 90.30105991747739%; top: 70.76496387042388%; opacity: 0.7634508875535153;"></div><div style="position: absolute; width: 1.1694596538477389px; height: 1.1694596538477389px; background: white; border-radius: 50%; left: 34.45599827916575%; top: 70.61202494690161%; opacity: 0.7957611004695606;"></div><div style="position: absolute; width: 1.9042034695629733px; height: 1.9042034695629733px; background: white; border-radius: 50%; left: 18.507237780470277%; top: 27.992237892754712%; opacity: 0.5646447382209616;"></div><div style="position: absolute; width: 2.0874381772234925px; height: 2.0874381772234925px; background: white; border-radius: 50%; left: 19.502261171084847%; top: 63.34406253688181%; opacity: 0.6568369237393361;"></div><div style="position: absolute; width: 1.1665253655910433px; height: 1.1665253655910433px; background: white; border-radius: 50%; left: 41.69502003907024%; top: 3.301637974520988%; opacity: 0.30333055189755825;"></div><div style="position: absolute; width: 2.3045081340144913px; height: 2.3045081340144913px; background: white; border-radius: 50%; left: 21.410114388268077%; top: 93.29864377745065%; opacity: 0.3244795579052317;"></div><div style="position: absolute; width: 1.208975546932884px; height: 1.208975546932884px; background: white; border-radius: 50%; left: 70.46232979430016%; top: 33.942520256324826%; opacity: 0.4531573340584583;"></div><div style="position: absolute; width: 2.319393799115852px; height: 2.319393799115852px; background: white; border-radius: 50%; left: 36.1159650142782%; top: 28.855118029439943%; opacity: 0.37303548995552466;"></div><div style="position: absolute; width: 1.7539157981334954px; height: 1.7539157981334954px; background: white; border-radius: 50%; left: 50.96157526472147%; top: 87.85132179331383%; opacity: 0.520450345964298;"></div><div style="position: absolute; width: 1.894186707490432px; height: 1.894186707490432px; background: white; border-radius: 50%; left: 63.466592171447125%; top: 59.830752441306046%; opacity: 0.6063497337371753;"></div><div style="position: absolute; width: 2.245303059540279px; height: 2.245303059540279px; background: white; border-radius: 50%; left: 38.79101727832026%; top: 94.59643429195657%; opacity: 0.31780698273169666;"></div><div style="position: absolute; width: 2.4139240531232553px; height: 2.4139240531232553px; background: white; border-radius: 50%; left: 93.68468905811783%; top: 63.615822510685675%; opacity: 0.46583675749175263;"></div><div style="position: absolute; width: 1.4706010316115417px; height: 1.4706010316115417px; background: white; border-radius: 50%; left: 88.75303919797717%; top: 41.72733676888662%; opacity: 0.7939863954321611;"></div><div style="position: absolute; width: 1.127318745894025px; height: 1.127318745894025px; background: white; border-radius: 50%; left: 20.441935628439012%; top: 40.13564896894637%; opacity: 0.6467286162612012;"></div><div style="position: absolute; width: 2.0873287581665676px; height: 2.0873287581665676px; background: white; border-radius: 50%; left: 52.52965375879586%; top: 14.250578413889837%; opacity: 0.7102885388015834;"></div><div style="position: absolute; width: 2.66598490190725px; height: 2.66598490190725px; background: white; border-radius: 50%; left: 47.13357088746759%; top: 37.28737770061026%; opacity: 0.5185614277209725;"></div><div style="position: absolute; width: 1.2610516715570128px; height: 1.2610516715570128px; background: white; border-radius: 50%; left: 90.17054626517667%; top: 82.90553706327428%; opacity: 0.6605648639679027;"></div><div style="position: absolute; width: 1.4125769961698462px; height: 1.4125769961698462px; background: white; border-radius: 50%; left: 41.18331546069698%; top: 64.2778751061515%; opacity: 0.729832522280452;"></div><div style="position: absolute; width: 2.9449549917274376px; height: 2.9449549917274376px; background: white; border-radius: 50%; left: 88.32701179101497%; top: 15.961840106588188%; opacity: 0.453802783343414;"></div><div style="position: absolute; width: 1.7279403762037222px; height: 1.7279403762037222px; background: white; border-radius: 50%; left: 97.39925762505766%; top: 91.33808974469504%; opacity: 0.4178348764807048;"></div><div style="position: absolute; width: 2.2469514106487423px; height: 2.2469514106487423px; background: white; border-radius: 50%; left: 68.83770320308369%; top: 36.98405553744355%; opacity: 0.5695278170098139;"></div><div style="position: absolute; width: 1.5018795946950623px; height: 1.5018795946950623px; background: white; border-radius: 50%; left: 98.18797347216406%; top: 11.276848975074593%; opacity: 0.3985568067884772;"></div><div style="position: absolute; width: 2.0817381486926783px; height: 2.0817381486926783px; background: white; border-radius: 50%; left: 31.156098458863223%; top: 74.98853776124761%; opacity: 0.446020873210824;"></div><div style="position: absolute; width: 1.3612858904730945px; height: 1.3612858904730945px; background: white; border-radius: 50%; left: 25.472285122683736%; top: 20.71221294151744%; opacity: 0.3147590906697489;"></div><div style="position: absolute; width: 1.4463853944626663px; height: 1.4463853944626663px; background: white; border-radius: 50%; left: 97.94840533627402%; top: 89.15947860290325%; opacity: 0.5025802417705842;"></div><div style="position: absolute; width: 1.8060993893635193px; height: 1.8060993893635193px; background: white; border-radius: 50%; left: 78.70018230426649%; top: 41.00659818740466%; opacity: 0.4210641629283272;"></div><div style="position: absolute; width: 1.2102726250162537px; height: 1.2102726250162537px; background: white; border-radius: 50%; left: 65.01660949569666%; top: 20.449179818878992%; opacity: 0.5595148736069786;"></div><div style="position: absolute; width: 1.2486144745068941px; height: 1.2486144745068941px; background: white; border-radius: 50%; left: 67.75756135910925%; top: 4.3207612661712025%; opacity: 0.3475941147052955;"></div><div style="position: absolute; width: 2.700412462432527px; height: 2.700412462432527px; background: white; border-radius: 50%; left: 84.09352408465625%; top: 30.732503547239155%; opacity: 0.46773163062676776;"></div><div style="position: absolute; width: 1.7282779872913654px; height: 1.7282779872913654px; background: white; border-radius: 50%; left: 83.68527735058451%; top: 64.25360662373609%; opacity: 0.6994690623965538;"></div><div style="position: absolute; width: 2.048431142032352px; height: 2.048431142032352px; background: white; border-radius: 50%; left: 52.27670443162129%; top: 38.97966594363802%; opacity: 0.40406522903009795;"></div><div style="position: absolute; width: 2.839297471508151px; height: 2.839297471508151px; background: white; border-radius: 50%; left: 49.423308699704684%; top: 85.06977912894078%; opacity: 0.4447604255217867;"></div><div style="position: absolute; width: 1.2788223479052454px; height: 1.2788223479052454px; background: white; border-radius: 50%; left: 98.9166209750133%; top: 49.613224997497426%; opacity: 0.7124285081549477;"></div><div style="position: absolute; width: 2.035206355775298px; height: 2.035206355775298px; background: white; border-radius: 50%; left: 35.612273798784535%; top: 66.07214764482974%; opacity: 0.6890391116142869;"></div><div style="position: absolute; width: 1.9396558015859506px; height: 1.9396558015859506px; background: white; border-radius: 50%; left: 41.19722647626125%; top: 0.25357089898614404%; opacity: 0.5466229851309239;"></div><div style="position: absolute; width: 1.7496483634138986px; height: 1.7496483634138986px; background: white; border-radius: 50%; left: 67.49478045245903%; top: 45.22450570861445%; opacity: 0.5157140787433352;"></div><div style="position: absolute; width: 2.3379322802250866px; height: 2.3379322802250866px; background: white; border-radius: 50%; left: 32.00638987411364%; top: 91.62930325778342%; opacity: 0.7808560193769298;"></div><div style="position: absolute; width: 1.2954617081607385px; height: 1.2954617081607385px; background: white; border-radius: 50%; left: 8.335110857550344%; top: 17.975236406271833%; opacity: 0.7427193910798893;"></div><div style="position: absolute; width: 2.4813738923606223px; height: 2.4813738923606223px; background: white; border-radius: 50%; left: 20.77976958892136%; top: 7.812459548619688%; opacity: 0.47141154060533513;"></div></div>
+    <div class="cosmic-dust"></div>
+    <div class="cosmic-particles" id="particles"><div class="particle" style="width: 1.30488px; height: 1.30488px; left: 1067.36px; top: 300.378px; animation-duration: 20.1222s; animation-delay: 1.41916s;"></div><div class="particle" style="width: 2.20899px; height: 2.20899px; left: 842.47px; top: 825.28px; animation-duration: 19.8998s; animation-delay: 1.11431s;"></div><div class="particle" style="width: 3.39862px; height: 3.39862px; left: 1419.21px; top: 823.314px; animation-duration: 29.7901s; animation-delay: 2.09646s;"></div><div class="particle" style="width: 3.33577px; height: 3.33577px; left: 570.968px; top: 651.59px; animation-duration: 27.763s; animation-delay: 1.00262s;"></div><div class="particle" style="width: 2.81485px; height: 2.81485px; left: 1128.3px; top: 572.592px; animation-duration: 21.499s; animation-delay: 0.0405477s;"></div><div class="particle" style="width: 3.75039px; height: 3.75039px; left: 587.777px; top: 281.288px; animation-duration: 25.1461s; animation-delay: 0.42956s;"></div><div class="particle" style="width: 1.99359px; height: 1.99359px; left: 555.929px; top: 611.822px; animation-duration: 18.4941s; animation-delay: 4.89348s;"></div><div class="particle" style="width: 1.17391px; height: 1.17391px; left: 1428.05px; top: 229.56px; animation-duration: 26.5063s; animation-delay: 3.4094s;"></div><div class="particle" style="width: 3.77292px; height: 3.77292px; left: 474.988px; top: 53.1892px; animation-duration: 15.9216s; animation-delay: 4.11144s;"></div><div class="particle" style="width: 1.89163px; height: 1.89163px; left: 542.625px; top: 389.596px; animation-duration: 29.883s; animation-delay: 4.75859s;"></div><div class="particle" style="width: 3.88283px; height: 3.88283px; left: 960.798px; top: 337.041px; animation-duration: 27.2002s; animation-delay: 2.02633s;"></div><div class="particle" style="width: 2.45637px; height: 2.45637px; left: 1560.21px; top: 216.002px; animation-duration: 19.4446s; animation-delay: 0.689411s;"></div><div class="particle" style="width: 3.74363px; height: 3.74363px; left: 1243.74px; top: 228.374px; animation-duration: 26.8953s; animation-delay: 4.27502s;"></div><div class="particle" style="width: 2.98015px; height: 2.98015px; left: 187.686px; top: 363.398px; animation-duration: 22.6112s; animation-delay: 3.9609s;"></div><div class="particle" style="width: 2.84528px; height: 2.84528px; left: 884.854px; top: 554.233px; animation-duration: 22.0106s; animation-delay: 4.03366s;"></div><div class="particle" style="width: 2.12711px; height: 2.12711px; left: 591.59px; top: 816.473px; animation-duration: 21.8648s; animation-delay: 2.1241s;"></div><div class="particle" style="width: 2.83357px; height: 2.83357px; left: 1519.27px; top: 295.347px; animation-duration: 28.57s; animation-delay: 4.33767s;"></div><div class="particle" style="width: 3.7944px; height: 3.7944px; left: 1556.16px; top: 346.649px; animation-duration: 29.5345s; animation-delay: 0.21113s;"></div><div class="particle" style="width: 1.57743px; height: 1.57743px; left: 218px; top: 504.7px; animation-duration: 17.0248s; animation-delay: 0.445545s;"></div><div class="particle" style="width: 2.76961px; height: 2.76961px; left: 390.458px; top: 148.316px; animation-duration: 23.4494s; animation-delay: 4.17381s;"></div><div class="particle" style="width: 2.5765px; height: 2.5765px; left: 1264.62px; top: 14.5623px; animation-duration: 16.7707s; animation-delay: 1.50715s;"></div><div class="particle" style="width: 2.82517px; height: 2.82517px; left: 1076.22px; top: 186.819px; animation-duration: 26.0792s; animation-delay: 1.85399s;"></div><div class="particle" style="width: 3.44364px; height: 3.44364px; left: 1511.4px; top: 293.464px; animation-duration: 26.7038s; animation-delay: 2.71731s;"></div><div class="particle" style="width: 3.35477px; height: 3.35477px; left: 1225.59px; top: 781.881px; animation-duration: 26.8729s; animation-delay: 4.42176s;"></div><div class="particle" style="width: 2.63339px; height: 2.63339px; left: 1227.65px; top: 812.79px; animation-duration: 27.696s; animation-delay: 1.45622s;"></div><div class="particle" style="width: 3.08883px; height: 3.08883px; left: 251.278px; top: 351.778px; animation-duration: 15.2257s; animation-delay: 0.622082s;"></div><div class="particle" style="width: 3.28881px; height: 3.28881px; left: 592.55px; top: 798.251px; animation-duration: 29.1287s; animation-delay: 2.24951s;"></div><div class="particle" style="width: 3.91079px; height: 3.91079px; left: 86.4072px; top: 407.302px; animation-duration: 28.9958s; animation-delay: 1.2552s;"></div><div class="particle" style="width: 2.41489px; height: 2.41489px; left: 1057.61px; top: 315.962px; animation-duration: 18.5101s; animation-delay: 4.06612s;"></div><div class="particle" style="width: 1.02479px; height: 1.02479px; left: 1303.77px; top: 694.739px; animation-duration: 27.8467s; animation-delay: 1.53008s;"></div><div class="particle" style="width: 1.52052px; height: 1.52052px; left: 1160.79px; top: 133.614px; animation-duration: 29.6118s; animation-delay: 1.7018s;"></div><div class="particle" style="width: 1.70605px; height: 1.70605px; left: 124.358px; top: 462.766px; animation-duration: 29.7924s; animation-delay: 0.617754s;"></div><div class="particle" style="width: 1.39646px; height: 1.39646px; left: 809.298px; top: 50.5938px; animation-duration: 20.8925s; animation-delay: 3.79899s;"></div><div class="particle" style="width: 3.0498px; height: 3.0498px; left: 144.487px; top: 40.4362px; animation-duration: 29.1909s; animation-delay: 4.95739s;"></div><div class="particle" style="width: 1.2952px; height: 1.2952px; left: 654.936px; top: 539.844px; animation-duration: 25.2572s; animation-delay: 1.82505s;"></div><div class="particle" style="width: 1.15467px; height: 1.15467px; left: 607.369px; top: 243.603px; animation-duration: 16.1317s; animation-delay: 0.205653s;"></div><div class="particle" style="width: 3.17931px; height: 3.17931px; left: 50.5775px; top: 33.7077px; animation-duration: 29.7592s; animation-delay: 0.439841s;"></div><div class="particle" style="width: 1.5741px; height: 1.5741px; left: 1166.54px; top: 791.87px; animation-duration: 19.6981s; animation-delay: 3.99553s;"></div><div class="particle" style="width: 2.4212px; height: 2.4212px; left: 240.138px; top: 195.617px; animation-duration: 27.6561s; animation-delay: 1.84509s;"></div><div class="particle" style="width: 3.10351px; height: 3.10351px; left: 1337.58px; top: 695.485px; animation-duration: 27.0347s; animation-delay: 2.61501s;"></div><div class="particle" style="width: 2.17976px; height: 2.17976px; left: 776.359px; top: 118.687px; animation-duration: 29.4777s; animation-delay: 0.436594s;"></div><div class="particle" style="width: 3.46065px; height: 3.46065px; left: 835.999px; top: 69.3059px; animation-duration: 23.1137s; animation-delay: 1.09126s;"></div><div class="particle" style="width: 1.35837px; height: 1.35837px; left: 850.716px; top: 695.78px; animation-duration: 29.7118s; animation-delay: 1.53586s;"></div><div class="particle" style="width: 2.19297px; height: 2.19297px; left: 445.265px; top: 318.083px; animation-duration: 23.6829s; animation-delay: 0.941645s;"></div><div class="particle" style="width: 3.17773px; height: 3.17773px; left: 1524.06px; top: 472.741px; animation-duration: 18.3291s; animation-delay: 4.46073s;"></div><div class="particle" style="width: 3.82631px; height: 3.82631px; left: 870.954px; top: 36.962px; animation-duration: 27.7083s; animation-delay: 0.148196s;"></div><div class="particle" style="width: 3.20532px; height: 3.20532px; left: 424.87px; top: 240.215px; animation-duration: 18.3499s; animation-delay: 2.03379s;"></div><div class="particle" style="width: 1.59844px; height: 1.59844px; left: 869.393px; top: 417.776px; animation-duration: 16.685s; animation-delay: 1.93475s;"></div><div class="particle" style="width: 2.6816px; height: 2.6816px; left: 148.062px; top: 515.359px; animation-duration: 23.9462s; animation-delay: 1.71759s;"></div><div class="particle" style="width: 2.07578px; height: 2.07578px; left: 230.909px; top: 269.956px; animation-duration: 17.271s; animation-delay: 1.14282s;"></div><div class="meteor" style="left: 1056.23px; top: 0.111719px;"></div></div>
+    <div class="pulse-effect"></div>
+    
+    <button class="back-btn" onclick="window.location.href=&#39;links.html&#39;">← Back to Main</button>
+    
+    <header>
+        <h1>Interactive Space Games</h1>
+    </header>
+    
+    <div class="container">
+        <div class="games-grid">
+            <div class="game-card">
+                <div class="game-image" style="background-image: url(&#39;data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjE4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMTIxMjJhIi8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iOTAiIHI9IjMwIiBmaWxsPSIjZmZjYzAwIi8+PGNpcmNsZSBjeD0iODAiIGN5PSI5MCIgcj0iMTAiIGZpbGw9IiMzMzk5ZmYiLz48Y2lyY2xlIGN4PSIyMTAiIGN5PSI5MCIgcj0iMTUiIGZpbGw9IiNmZjY2MDAiLz48L3N2Zz4=&#39;)"></div>
+                <div class="game-content">
+                    <h3 class="game-title">Solar System Explorer</h3>
+                    <p class="game-description">Explore the wonders of our Solar System! Learn about planets, moons, and other celestial objects in this interactive exploration game.</p>
+                    <button class="play-btn" onclick="openGame(&#39;solar&#39;)">Play Now</button>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-image" style="background-image: url(&#39;data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjE4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMDAwMDEwIi8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iOTAiIHI9IjQwIiBmaWxsPSIjMDAwIiBzdHJva2U9IiM1MzRmOTkiIHN0cm9rZS13aWR0aD0iMiIvPjxlbGxpcHNlIGN4PSIxNTAiIGN5PSI5MCIgcng9IjYwIiByeT0iMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMzOTlmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+&#39;)"></div>
+                <div class="game-content">
+                    <h3 class="game-title">Black Hole Simulator</h3>
+                    <p class="game-description">Experience the gravitational pull of a black hole! Try to navigate objects around without letting them get sucked into the event horizon.</p>
+                    <button class="play-btn" onclick="openGame(&#39;blackhole&#39;)">Play Now</button>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-image" style="background-image: url(&#39;data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjE4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMDAwMDE4Ii8+PGVsbGlwc2UgY3g9IjE1MCIgY3k9IjkwIiByeD0iODAiIHJ5PSIzMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzBjMGZmIiBzdHJva2Utd2lkdGg9IjEiLz48ZWxsaXBzZSBjeD0iMTUwIiBjeT0iOTAiIHJ4PSI2MCIgcnk9IjIwIiBmaWxsPSJub25lIiBzdHJva2U9IiNjMGMwZmYiIHN0cm9rZS13aWR0aD0iMSIvPjxlbGxpcHNlIGN4PSIxNTAiIGN5PSI5MCIgcng9IjQwIiByeT0iMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2MwYzBmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+&#39;)"></div>
+                <div class="game-content">
+                    <h3 class="game-title">Galaxy Creator</h3>
+                    <p class="game-description">Design your own galaxy! Place stars, determine their properties, and watch how they interact in this cosmic creation game.</p>
+                    <button class="play-btn" onclick="openGame(&#39;galaxy&#39;)">Play Now</button>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-image" style="background-image: url(&#39;data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjE4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMGYwZjI1Ii8+PHBhdGggZD0iTTEwMCw5MCBMOTAsNjAgTDExMCw2MCBaIiBmaWxsPSIjYzBjMGZmIi8+PHBhdGggZD0iTTE1MCw5MCBMMTQwLDYwIEwxNjAsNjAgWiIgZmlsbD0iI2MwYzBmZiIvPjxwYXRoIGQ9Ik0yMDAsOTAgTDE5MCw2MCBMMjEwLDYwIFoiIGZpbGw9IiNjMGMwZmYiLz48L3N2Zz4=&#39;)"></div>
+                <div class="game-content">
+                    <h3 class="game-title">Cosmic Quiz</h3>
+                    <p class="game-description">Test your knowledge about space, planets, and black holes in this interactive quiz game. Learn fascinating facts about our universe!</p>
+                    <button class="play-btn" onclick="openGame(&#39;quiz&#39;)">Play Now</button>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-image" style="background-image: url(&#39;data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjE4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMDYwNjIwIi8+PHBhdGggZD0iTTUwLDEyMCBDMTAwLDgwIDE1MCwxMjAgMjAwLDgwIEwyNTAsMTIwIEwyNTAsMTgwIEw1MCwxODAgWiIgZmlsbD0iIzMzNjY5OSIvPjxjaXJjbGUgY3g9IjIyMCIgY3k9IjQwIiByPSIyMCIgZmlsbD0iI2ZmY2MwMCIvPjwvc3ZnPg==&#39;)"></div>
+                <div class="game-content">
+                    <h3 class="game-title">Planet Defender</h3>
+                    <p class="game-description">Protect your planet from incoming asteroids and comets! Use your gravity beam to deflect objects before they impact your world.</p>
+                    <button class="play-btn" onclick="openGame(&#39;defender&#39;)">Play Now</button>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-image" style="background-image: url(&#39;data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjE4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMDkwOTE1Ii8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iOTAiIHI9IjQwIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWRhc2hhcnJheT0iNSwyIi8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iOTAiIHI9IjIwIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPjxjaXJjbGUgY3g9IjE1MCIgY3k9IjkwIiByPSI1IiBmaWxsPSIjZmZmZmZmIi8+PC9zdmc+&#39;)"></div>
+                <div class="game-content">
+                    <h3 class="game-title">Orbital Mechanics</h3>
+                    <p class="game-description">Learn about the physics of space! Experiment with gravity, momentum, and orbital dynamics in this educational simulator.</p>
+                    <button class="play-btn" onclick="openGame(&#39;orbital&#39;)">Play Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal" id="gameModal" style="display: none;">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">×</button>
+            <h2 id="modal-title">Solar System Explorer</h2>
+            <div id="game-container">
+                <div id="solar-system-game" style="display: block;">
+                    <h3>Explore the Solar System</h3>
+                    <p>Click on planets to learn more about them!</p>
+                    <div id="solar-system" style="width: 100%; height: 400px; position: relative; background: #000; border-radius: 10px; margin-top: 20px;">
+                        <div class="planet planet-mercury" style="top: 150px; left: 100px;" onclick="showPlanetInfo(&#39;Mercury&#39;, &#39;The smallest planet in our Solar System and closest to the Sun.&#39;)"></div>
+                        <div class="planet planet-venus" style="top: 200px; left: 150px;" onclick="showPlanetInfo(&#39;Venus&#39;, &#39;Often called Earth\&#39;s sister planet due to its similar size, it has a thick toxic atmosphere.&#39;)"></div>
+                        <div class="planet planet-earth" style="top: 120px; left: 200px;" onclick="showPlanetInfo(&#39;Earth&#39;, &#39;Our home planet, the only known place in the universe with life.&#39;)"></div>
+                        <div class="planet planet-mars" style="top: 180px; left: 250px;" onclick="showPlanetInfo(&#39;Mars&#39;, &#39;Known as the Red Planet due to iron oxide on its surface, it has the largest volcano in the Solar System.&#39;)"></div>
+                        <div class="planet planet-jupiter" style="top: 100px; left: 320px; width: 80px; height: 80px;" onclick="showPlanetInfo(&#39;Jupiter&#39;, &#39;The largest planet in our Solar System, famous for its Great Red Spot storm.&#39;)"></div>
+                        <div class="planet planet-saturn" style="top: 230px; left: 400px; width: 75px; height: 75px;" onclick="showPlanetInfo(&#39;Saturn&#39;, &#39;Known for its beautiful ring system, Saturn is a gas giant with the lowest density of all planets.&#39;)"></div>
+                        <div class="planet planet-uranus" style="top: 150px; left: 470px; width: 60px; height: 60px;" onclick="showPlanetInfo(&#39;Uranus&#39;, &#39;Uranus rotates on its side, giving it extreme seasons that last for decades.&#39;)"></div>
+                        <div class="planet planet-neptune" style="top: 220px; left: 540px; width: 60px; height: 60px;" onclick="showPlanetInfo(&#39;Neptune&#39;, &#39;The windiest planet with speeds reaching 2,100 km/hour, it has a deep blue color.&#39;)"></div>
+                        <div id="planet-info" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); text-align: center; color: white; width: 80%;"><h3>Neptune</h3><p>The windiest planet with speeds reaching 2,100 km/hour, it has a deep blue color.</p></div>
+                    </div>
+                </div>
+                
+                <div id="blackhole-game" style="display: none;">
+                    <div class="blackhole"></div>
+                    <div id="blackhole-stats" style="position: absolute; top: 20px; left: 20px; color: white;">
+                        <p>Objects Consumed: <span id="consumed-count">0</span></p>
+                        <p>Gravity Level: <span id="gravity-level">1</span></p>
+                    </div>
+                    <button id="increase-gravity" style="position: absolute; bottom: 20px; left: 20px; background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer;">Increase Gravity</button>
+                    <button id="spawn-star" style="position: absolute; bottom: 20px; right: 20px; background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer;">Spawn Star</button>
+                </div>
+                
+                <div id="galaxy-game" style="display: none;">
+                    <div class="galaxy"></div>
+                    <div id="galaxy-controls" style="position: absolute; bottom: 20px; left: 0; width: 100%; text-align: center; color: white;">
+                        <button id="add-star" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px; border-radius: 5px; margin: 0 10px; cursor: pointer;">Add Star</button>
+                        <button id="add-comet" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px; border-radius: 5px; margin: 0 10px; cursor: pointer;">Add Comet</button>
+                        <button id="toggle-rotation" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px; border-radius: 5px; margin: 0 10px; cursor: pointer;">Toggle Rotation</button>
+                    </div>
+                </div>
+                
+                <div id="quiz-game" style="display: none; padding: 20px; color: white;">
+                    <h3 id="question">What is the closest planet to the Sun?</h3>
+                    <div id="options" style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
+                        <button class="quiz-option" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 15px; border-radius: 5px; text-align: left; cursor: pointer;" onclick="checkAnswer(&#39;Mercury&#39;)">Mercury</button>
+                        <button class="quiz-option" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 15px; border-radius: 5px; text-align: left; cursor: pointer;" onclick="checkAnswer(&#39;Venus&#39;)">Venus</button>
+                        <button class="quiz-option" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 15px; border-radius: 5px; text-align: left; cursor: pointer;" onclick="checkAnswer(&#39;Earth&#39;)">Earth</button>
+                        <button class="quiz-option" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 15px; border-radius: 5px; text-align: left; cursor: pointer;" onclick="checkAnswer(&#39;Mars&#39;)">Mars</button>
+                    </div>
+                    <p id="feedback" style="margin-top: 20px; font-weight: bold;"></p>
+                    <p id="score" style="margin-top: 10px;">Score: 0</p>
+                    <button id="next-question" style="display: none; background: linear-gradient(45deg, #00ccff, #0073e6); color: white; border: none; padding: 10px 25px; border-radius: 30px; margin-top: 20px; cursor: pointer;">Next Question</button>
+                </div>
+                
+                <div id="defender-game" style="display: none; width: 100%; height: 500px; background: #000; position: relative; overflow: hidden; border-radius: 15px;">
+                    <div id="planet" style="position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(#0099FF, #006600);"></div>
+                    <div id="defense-beam" style="position: absolute; bottom: 150px; left: 50%; transform: translateX(-50%) rotate(0deg); width: 4px; height: 150px; background: rgba(0, 255, 255, 0.7); transform-origin: bottom center; display: none;"></div>
+                    <div id="defender-stats" style="position: absolute; top: 20px; left: 20px; color: white;">
+                        <p>Score: <span id="defender-score">0</span></p>
+                        <p>Health: <span id="planet-health">100</span>%</p>
+                    </div>
+                    <div id="game-over" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 2rem; text-align: center; display: none;">
+                        <p>Game Over!</p>
+                        <button id="restart-game" style="background: linear-gradient(45deg, #00ccff, #0073e6); color: white; border: none; padding: 10px 25px; border-radius: 30px; margin-top: 20px; cursor: pointer;">Try Again</button>
+                    </div>
+                </div>
+                
+                <div id="orbital-game" style="display: none; width: 100%; height: 500px; background: #000; position: relative; overflow: hidden; border-radius: 15px;">
+                    <div id="central-body" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; border-radius: 50%; background: #ffcc00;"></div>
+                    <div id="satellite" style="position: absolute; top: 150px; left: 390px; width: 15px; height: 15px; border-radius: 50%; background: #3399ff;"></div>
+                    <div id="orbit-trail" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
+                    <div id="orbital-controls" style="position: absolute; bottom: 20px; left: 0; width: 100%; text-align: center;">
+                        <button id="increase-mass" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px; border-radius: 5px; margin: 0 10px; cursor: pointer;">Increase Mass</button>
+                        <button id="decrease-mass" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px; border-radius: 5px; margin: 0 10px; cursor: pointer;">Decrease Mass</button>
+                        <button id="reset-orbit" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px; border-radius: 5px; margin: 0 10px; cursor: pointer;">Reset Orbit</button>
+                    </div>
+                    <div id="orbit-info" style="position: absolute; top: 20px; left: 20px; color: white;">
+                        <p>Orbital Velocity: <span id="velocity">100</span> km/s</p>
+                        <p>Central Mass: <span id="mass">1.0</span>x</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2025 The Inspirational Boat | Interactive Space Games</p>
+        <p>Explore the cosmos and learn about our amazing universe!</p>
+    </footer>
+    
+    <script>
+        // Create cosmic particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particlesCount = 50;
+            
+            for (let i = 0; i < particlesCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 1 and 4px
+                const size = Math.random() * 3 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                particle.style.left = `${posX}px`;
+                particle.style.top = `${posY}px`;
+                
+                // Random animation duration between 15 and 30 seconds
+                const duration = Math.random() * 15 + 15;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Random delay
+                const delay = Math.random() * 5;
+                particle.style.animationDelay = `${delay}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Create stars background
+        function createStars() {
+            const stars = document.querySelector('.stars');
+            let starsHtml = '';
+            const starsCount = 200;
+            
+            for (let i = 0; i < starsCount; i++) {
+                const size = Math.random() * 2 + 1;
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                const opacity = Math.random() * 0.5 + 0.3;
+                
+                starsHtml += `<div style="position: absolute; width: ${size}px; height: ${size}px; background: white; border-radius: 50%; left: ${x}%; top: ${y}%; opacity: ${opacity};"></div>`;
+            }
+            
+            stars.innerHTML = starsHtml;
+        }
+        
+        // Create random meteor effect
+        function createMeteor() {
+            const container = document.querySelector('.cosmic-particles');
+            const meteor = document.createElement('div');
+            meteor.classList.add('meteor');
+            
+            // Random position
+            const startX = Math.random() * window.innerWidth;
+            const startY = Math.random() * 300;
+            meteor.style.left = `${startX}px`;
+            meteor.style.top = `${startY}px`;
+            
+            container.appendChild(meteor);
+            
+            // Remove meteor after animation is complete
+            setTimeout(() => {
+                meteor.remove();
+            }, 2000);
+        }
+        
+        // Game Modal functions
+        function openGame(gameType) {
+            const modal = document.getElementById('gameModal');
+            const modalTitle = document.getElementById('modal-title');
+            
+            // Hide all games
+            document.getElementById('solar-system-game').style.display = 'none';
+            document.getElementById('blackhole-game').style.display = 'none';
+            document.getElementById('galaxy-game').style.display = 'none';
+            document.getElementById('quiz-game').style.display = 'none';
+            document.getElementById('defender-game').style.display = 'none';
+            document.getElementById('orbital-game').style.display = 'none';
+            
+            // Show the selected game
+            switch(gameType) {
+                case 'solar':
+                    modalTitle.textContent = 'Solar System Explorer';
+                    document.getElementById('solar-system-game').style.display = 'block';
+                    break;
+                case 'blackhole':
+                    modalTitle.textContent = 'Black Hole Simulator';
+                    document.getElementById('blackhole-game').style.display = 'block';
+                    initBlackholeGame();
+                    break;
+                case 'galaxy':
+                    modalTitle.textContent = 'Galaxy Creator';
+                    document.getElementById('galaxy-game').style.display = 'block';
+                    initGalaxyGame();
+                    break;
+                case 'quiz':
+                    modalTitle.textContent = 'Cosmic Quiz';
+                    document.getElementById('quiz-game').style.display = 'block';
+                    break;
+                case 'defender':
+                    modalTitle.textContent = 'Planet Defender';
+                    document.getElementById('defender-game').style.display = 'block';
+                    initDefenderGame();
+                    break;
+                case 'orbital':
+                    modalTitle.textContent = 'Orbital Mechanics';
+                    document.getElementById('orbital-game').style.display = 'block';
+                    initOrbitalGame();
+                    break;
+            }
+            
+            modal.style.display = 'flex';
+        }
+        
+        function closeModal() {
+            document.getElementById('gameModal').style.display = 'none';
+        }
+        
+        // Solar System game functions
+        function showPlanetInfo(name, info) {
+            const planetInfo = document.getElementById('planet-info');
+            planetInfo.innerHTML = `<h3>${name}</h3><p>${info}</p>`;
+        }
+        
+        // Black Hole game functions
+        function initBlackholeGame() {
+            const blackholeGame = document.getElementById('blackhole-game');
+            const blackhole = document.querySelector('.blackhole');
+            const increaseBtn = document.getElementById('increase-gravity');
+            const spawnBtn = document.getElementById('spawn-star');
+            let consumedCount = 0;
+            let gravityLevel = 1;
+            
+            // Reset counters
+            document.getElementById('consumed-count').textContent = consumedCount;
+            document.getElementById('gravity-level').textContent = gravityLevel;
+            
+            // Clear any existing stars
+            const existingStars = blackholeGame.querySelectorAll('.star-particle');
+            existingStars.forEach(star => star.remove());
+            
+            // Increase gravity level
+            increaseBtn.onclick = function() {
+                if (gravityLevel < 5) {
+                    gravityLevel++;
+                    document.getElementById('gravity-level').textContent = gravityLevel;
+                    blackhole.style.width = (100 + gravityLevel * 10) + 'px';
+                    blackhole.style.height = (100 + gravityLevel * 10) + 'px';
+                }
+            };
+            
+            // Spawn a new star
+            spawnBtn.onclick = function() {
+                spawnStar();
+            };
+            
+            function spawnStar() {
+                const star = document.createElement('div');
+                star.classList.add('star-particle');
+                
+                // Random position at the edge of the container
+                const side = Math.floor(Math.random() * 4); // 0: top, 1: right, 2: bottom, 3: left
+                let posX, posY;
+                
+                switch(side) {
+                    case 0: // top
+                        posX = Math.random() * blackholeGame.offsetWidth;
+                        posY = 0;
+                        break;
+                    case 1: // right
+                        posX = blackholeGame.offsetWidth;
+                        posY = Math.random() * blackholeGame.offsetHeight;
+                        break;
+                    case 2: // bottom
+                        posX = Math.random() * blackholeGame.offsetWidth;
+                        posY = blackholeGame.offsetHeight;
+                        break;
+                    case 3: // left
+                        posX = 0;
+                        posY = Math.random() * blackholeGame.offsetHeight;
+                        break;
+                }
+                
+                star.style.left = `${posX}px`;
+                star.style.top = `${posY}px`;
+                
+                blackholeGame.appendChild(star);
+                
+                // Animate star towards black hole
+                moveStarTowardsBlackHole(star);
+            }
+            
+            function moveStarTowardsBlackHole(star) {
+                const blackholeX = blackhole.offsetLeft + blackhole.offsetWidth / 2;
+                const blackholeY = blackhole.offsetTop + blackhole.offsetHeight / 2;
+                
+                function animate() {
+                    // Current position
+                    const currentX = parseFloat(star.style.left);
+                    const currentY = parseFloat(star.style.top);
+                    
+                    // Calculate direction
+                    const dx = blackholeX - currentX;
+                    const dy = blackholeY - currentY;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    // Check if star is consumed
+                    if (distance < blackhole.offsetWidth / 2) {
+                        star.remove();
+                        consumedCount++;
+                        document.getElementById('consumed-count').textContent = consumedCount;
+                        return;
+                    }
+                    
+                    // Move star towards black hole with increasing speed based on distance and gravity level
+                    const speed = (0.5 + (5 - distance / 100)) * (gravityLevel * 0.5);
+                    const moveX = dx / distance * speed;
+                    const moveY = dy / distance * speed;
+                    
+                    star.style.left = (currentX + moveX) + 'px';
+                    star.style.top = (currentY + moveY) + 'px';
+                    
+                    requestAnimationFrame(animate);
+                }
+                
+                requestAnimationFrame(animate);
+            }
+            
+            // Initial stars
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    spawnStar();
+                }, i * 1000);
+            }
+        }
+        
+        // Galaxy game functions
+        function initGalaxyGame() {
+            const galaxyGame = document.getElementById('galaxy-game');
+            const galaxy = document.querySelector('.galaxy');
+            const addStarBtn = document.getElementById('add-star');
+            const addCometBtn = document.getElementById('add-comet');
+            const toggleRotationBtn = document.getElementById('toggle-rotation');
+            let isRotating = true;
+            
+            // Clear existing stars
+            const existingStars = galaxyGame.querySelectorAll('.galaxy-star');
+            existingStars.forEach(star => star.remove());
+            
+            // Clear existing comets
+            const existingComets = galaxyGame.querySelectorAll('.comet');
+            existingComets.forEach(comet => comet.remove());
+            
+            // Add a star to the galaxy
+            addStarBtn.onclick = function() {
+                const star = document.createElement('div');
+                star.classList.add('galaxy-star');
+                
+                // Random position within galaxy ellipse
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 120; // radius from center
+                const x = Math.cos(angle) * distance;
+                const y = Math.sin(angle) * distance * 0.4; // flattened on y-axis
+                
+                star.style.left = `calc(50% + ${x}px)`;
+                star.style.top = `calc(50% + ${y}px)`;
+                
+                // Random brightness
+                const brightness = Math.random() * 0.7 + 0.3;
+                star.style.opacity = brightness;
+                
+                galaxy.appendChild(star);
+            };
+            
+            // Add a comet to the galaxy
+            addCometBtn.onclick = function() {
+                const comet = document.createElement('div');
+                comet.classList.add('comet');
+                
+                // Random position and trajectory
+                const startAngle = Math.random() * Math.PI * 2;
+                const startDistance = Math.random() * 200 + 150; // start far from center
+                const startX = Math.cos(startAngle) * startDistance;
+                const startY = Math.sin(startAngle) * startDistance;
+                
+                comet.style.left = `calc(50% + ${startX}px)`;
+                comet.style.top = `calc(50% + ${startY}px)`;
+                
+                // Custom animation for this comet
+                const duration = Math.random() * 15 + 10;
+                const endX = Math.cos(startAngle + Math.PI) * startDistance;
+                const endY = Math.sin(startAngle + Math.PI) * startDistance;
+                
+                comet.animate([
+                    { transform: 'translate(0, 0)' },
+                    { transform: `translate(${endX - startX}px, ${endY - startY}px)` }
+                ], {
+                    duration: duration * 1000,
+                    easing: 'linear'
+                });
+                
+                galaxyGame.appendChild(comet);
+                
+                // Remove comet after animation
+                setTimeout(() => {
+                    comet.remove();
+                }, duration * 1000);
+            };
+            
+            // Toggle galaxy rotation
+            toggleRotationBtn.onclick = function() {
+                isRotating = !isRotating;
+                if (isRotating) {
+                    galaxy.style.animation = 'rotate 20s linear infinite';
+                } else {
+                    galaxy.style.animation = 'none';
+                }
+            };
+            
+            // Initialize with some stars
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.classList.add('galaxy-star');
+                
+                // Random position within galaxy ellipse
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 120; // radius from center
+                const x = Math.cos(angle) * distance;
+                const y = Math.sin(angle) * distance * 0.4; // flattened on y-axis
+                
+                star.style.left = `calc(50% + ${x}px)`;
+                star.style.top = `calc(50% + ${y}px)`;
+                
+                // Random brightness
+                const brightness = Math.random() * 0.7 + 0.3;
+                star.style.opacity = brightness;
+                
+                galaxy.appendChild(star);
+            }
+        }
+        
+        // Quiz game functions
+        let quizScore = 0;
+        let currentQuestion = 0;
+        
+        const quizQuestions = [
+            {
+                question: "What is the closest planet to the Sun?",
+                options: ["Mercury", "Venus", "Earth", "Mars"],
+                correct: "Mercury"
+            },
+            {
+                question: "Which is the largest planet in our Solar System?",
+                options: ["Earth", "Saturn", "Jupiter", "Neptune"],
+                correct: "Jupiter"
+            },
+            {
+                question: "What is a black hole?",
+                options: [
+                    "A star that has exploded",
+                    "A region of spacetime with gravity so strong that nothing can escape",
+                    "A planet with a black atmosphere",
+                    "A hole in the fabric of space"
+                ],
+                correct: "A region of spacetime with gravity so strong that nothing can escape"
+            },
+            {
+                question: "How many planets are in our Solar System?",
+                options: ["7", "8", "9", "10"],
+                correct: "8"
+            },
+            {
+                question: "Which planet has the Great Red Spot?",
+                options: ["Mars", "Venus", "Jupiter", "Saturn"],
+                correct: "Jupiter"
+            }
+        ];
+        
+        function checkAnswer(selected) {
+            const feedback = document.getElementById('feedback');
+            const nextButton = document.getElementById('next-question');
+            const correct = quizQuestions[currentQuestion].correct;
+            
+            if (selected === correct) {
+                feedback.textContent = "Correct!";
+                feedback.style.color = "#00ff00";
+                quizScore++;
+                document.getElementById('score').textContent = `Score: ${quizScore}`;
+            } else {
+                feedback.textContent = `Incorrect. The correct answer is ${correct}.`;
+                feedback.style.color = "#ff3300";
+            }
+            
+            // Disable all options
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach(option => {
+                option.disabled = true;
+                if (option.textContent === correct) {
+                    option.style.background = "rgba(0, 255, 0, 0.3)";
+                } else if (option.textContent === selected && selected !== correct) {
+                    option.style.background = "rgba(255, 0, 0, 0.3)";
+                }
+            });
+            
+            nextButton.style.display = "block";
+            nextButton.onclick = loadNextQuestion;
+        }
+        
+        function loadNextQuestion() {
+            currentQuestion++;
+            
+            if (currentQuestion >= quizQuestions.length) {
+                // Quiz is complete
+                document.getElementById('question').textContent = "Quiz Complete!";
+                document.getElementById('options').innerHTML = `<p>Your final score is ${quizScore} out of ${quizQuestions.length}.</p>`;
+                document.getElementById('feedback').textContent = "";
+                document.getElementById('next-question').style.display = "none";
+                return;
+            }
+            
+            const question = quizQuestions[currentQuestion];
+            document.getElementById('question').textContent = question.question;
+            
+            const optionsHtml = question.options.map(option => 
+                `<button class="quiz-option" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 15px; border-radius: 5px; text-align: left; cursor: pointer;" onclick="checkAnswer('${option}')">${option}</button>`
+            ).join('');
+            
+            document.getElementById('options').innerHTML = optionsHtml;
+            document.getElementById('feedback').textContent = "";
+            document.getElementById('next-question').style.display = "none";
+        }
+        
+        // Defender game functions
+        function initDefenderGame() {
+            const defenderGame = document.getElementById('defender-game');
+            const planet = document.getElementById('planet');
+            const beam = document.getElementById('defense-beam');
+            let score = 0;
+            let health = 100;
+            let gameActive = true;
+            
+            // Reset game state
+            document.getElementById('defender-score').textContent = score;
+            document.getElementById('planet-health').textContent = health;
+            document.getElementById('game-over').style.display = 'none';
+            gameActive = true;
+            
+            // Clear any existing asteroids
+            const existingAsteroids = defenderGame.querySelectorAll('.asteroid');
+            existingAsteroids.forEach(asteroid => asteroid.remove());
+            
+            // Control beam with mouse movement
+            defenderGame.addEventListener('mousemove', (e) => {
+                if (!gameActive) return;
+                
+                const rect = defenderGame.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Calculate angle between planet center and mouse
+                const planetCenterX = planet.offsetLeft + planet.offsetWidth / 2;
+                const planetCenterY = planet.offsetTop + planet.offsetHeight / 2;
+                
+                const dx = x - planetCenterX;
+                const dy = y - planetCenterY;
+                const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                
+                // Rotate beam
+                beam.style.transform = `translateX(-50%) rotate(${angle}deg)`;
+            });
+            
+            // Show beam on mouse down
+            defenderGame.addEventListener('mousedown', () => {
+                if (!gameActive) return;
+                beam.style.display = 'block';
+            });
+            
+            // Hide beam on mouse up
+            defenderGame.addEventListener('mouseup', () => {
+                beam.style.display = 'none';
+            });
+            
+            // Spawn asteroids
+            function spawnAsteroid() {
+                if (!gameActive) return;
+                
+                const asteroid = document.createElement('div');
+                asteroid.classList.add('asteroid');
+                
+                // Styles for asteroid
+                asteroid.style.position = 'absolute';
+                asteroid.style.width = `${Math.random() * 20 + 10}px`;
+                asteroid.style.height = asteroid.style.width;
+                asteroid.style.background = '#a67c52';
+                asteroid.style.borderRadius = '50%';
+                asteroid.style.boxShadow = '0 0 5px rgba(255,255,255,0.5)';
+                
+                // Random position at the edge
+                const side = Math.floor(Math.random() * 4); // 0: top, 1: right, 2: bottom, 3: left
+                let posX, posY;
+                
+                switch(side) {
+                    case 0: // top
+                        posX = Math.random() * defenderGame.offsetWidth;
+                        posY = 0;
+                        break;
+                    case 1: // right
+                        posX = defenderGame.offsetWidth;
+                        posY = Math.random() * defenderGame.offsetHeight;
+                        break;
+                    case 2: // bottom
+                        posX = Math.random() * defenderGame.offsetWidth;
+                        posY = defenderGame.offsetHeight;
+                        break;
+                    case 3: // left
+                        posX = 0;
+                        posY = Math.random() * defenderGame.offsetHeight;
+                        break;
+                }
+                
+                asteroid.style.left = `${posX}px`;
+                asteroid.style.top = `${posY}px`;
+                
+                defenderGame.appendChild(asteroid);
+                
+                // Make asteroid move towards planet
+                moveAsteroidTowardsPlanet(asteroid);
+            }
+            
+            function moveAsteroidTowardsPlanet(asteroid) {
+                const planetCenterX = planet.offsetLeft + planet.offsetWidth / 2;
+                const planetCenterY = planet.offsetTop + planet.offsetHeight / 2;
+                
+                function animate() {
+                    if (!gameActive) {
+                        asteroid.remove();
+                        return;
+                    }
+                    
+                    // Current position
+                    const currentX = parseFloat(asteroid.style.left);
+                    const currentY = parseFloat(asteroid.style.top);
+                    
+                    // Calculate direction
+                    const dx = planetCenterX - currentX;
+                    const dy = planetCenterY - currentY;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    // Check if asteroid hits the planet
+                    if (distance < planet.offsetWidth / 2 + parseFloat(asteroid.style.width) / 2) {
+                        asteroid.remove();
+                        health -= 10;
+                        document.getElementById('planet-health').textContent = health;
+                        
+                        if (health <= 0) {
+                            gameActive = false;
+                            document.getElementById('game-over').style.display = 'block';
+                        }
+                        return;
+                    }
+
+                    // Check if asteroid is hit by beam
+                    const beamAngle = parseFloat(beam.style.transform.replace(/[^-\d.]/g, ''));
+                    const beamStartX = planet.offsetLeft + planet.offsetWidth / 2;
+                    const beamStartY = planet.offsetTop + planet.offsetHeight / 2;
+                    const beamEndX = beamStartX + Math.cos(beamAngle * Math.PI / 180) * 150;
+                    const beamEndY = beamStartY + Math.sin(beamAngle * Math.PI / 180) * 150;
+
+                    // Check collision between asteroid and beam
+                    if (beam.style.display === 'block' && isPointInLine(currentX + parseFloat(asteroid.style.width)/2, currentY + parseFloat(asteroid.style.height)/2, beamStartX, beamStartY, beamEndX, beamEndY, 10)) {
+                        asteroid.remove();
+                        score += 10;
+                        document.getElementById('defender-score').textContent = score;
+                        return;
+                    }
+
+                    // Move asteroid
+                    const speed = 2;
+                    const moveX = dx / distance * speed;
+                    const moveY = dy / distance * speed;
+
+                    asteroid.style.left = (currentX + moveX) + 'px';
+                    asteroid.style.top = (currentY + moveY) + 'px';
+
+                    requestAnimationFrame(animate);
+                }
+
+                requestAnimationFrame(animate);
+            }
+
+            // Collision detection helper
+            function isPointInLine(px, py, x1, y1, x2, y2, radius) {
+                const A = px - x1;
+                const B = py - y1;
+                const C = x2 - x1;
+                const D = y2 - y1;
+
+                const dot = A * C + B * D;
+                const lenSq = C * C + D * D;
+                let param = -1;
+                if (lenSq !== 0) {
+                    param = dot / lenSq;
+                }
+
+                let xx, yy;
+                if (param < 0) {
+                    xx = x1;
+                    yy = y1;
+                } else if (param > 1) {
+                    xx = x2;
+                    yy = y2;
+                } else {
+                    xx = x1 + param * C;
+                    yy = y1 + param * D;
+                }
+
+                const dx = px - xx;
+                const dy = py - yy;
+                return Math.sqrt(dx * dx + dy * dy) < radius;
+            }
+
+            // Start spawning asteroids
+            const asteroidInterval = setInterval(() => {
+                if (gameActive) {
+                    spawnAsteroid();
+                } else {
+                    clearInterval(asteroidInterval);
+                }
+            }, 2000);
+
+            // Restart game
+            document.getElementById('restart-game').onclick = () => {
+                initDefenderGame();
+            };
+        }
+                // Orbital Mechanics game functions
+                function initOrbitalGame() {
+            const orbitalGame = document.getElementById('orbital-game');
+            const centralBody = document.getElementById('central-body');
+            const satellite = document.getElementById('satellite');
+            const orbitTrail = document.getElementById('orbit-trail');
+            const increaseMassBtn = document.getElementById('increase-mass');
+            const decreaseMassBtn = document.getElementById('decrease-mass');
+            const resetBtn = document.getElementById('reset-orbit');
+            
+            let mass = 1.0;
+            let velocity = 100;
+            let angle = 0;
+            let radius = 150;
+            let isOrbiting = true;
+            let trailPoints = [];
+
+            // Reset orbit
+            resetBtn.onclick = function() {
+                mass = 1.0;
+                velocity = 100;
+                radius = 150;
+                satellite.style.top = '150px';
+                satellite.style.left = '390px';
+                trailPoints = [];
+                updateOrbitTrail();
+                updateDisplay();
+                isOrbiting = true;
+                startOrbit();
+            };
+
+            // Mass controls
+            increaseMassBtn.onclick = function() {
+                if (mass < 5) {
+                    mass += 0.5;
+                    updateDisplay();
+                }
+            };
+
+            decreaseMassBtn.onclick = function() {
+                if (mass > 0.5) {
+                    mass -= 0.5;
+                    updateDisplay();
+                }
+            };
+
+            function updateDisplay() {
+                document.getElementById('velocity').textContent = velocity.toFixed(1);
+                document.getElementById('mass').textContent = mass.toFixed(1);
+            }
+
+            function calculateOrbit() {
+                const gravitationalConstant = 6.67430e-11;
+                const scaledMass = mass * 1e24;
+                const orbitRadius = radius * 1000;
+                
+                // Simplified orbital velocity formula: v = √(GM/r)
+                velocity = Math.sqrt((gravitationalConstant * scaledMass) / orbitRadius);
+            }
+
+            function updateOrbitTrail() {
+                let path = '';
+                trailPoints.forEach((point, index) => {
+                    if (index === 0) {
+                        path += `M ${point.x} ${point.y} `;
+                    } else {
+                        path += `L ${point.x} ${point.y} `;
+                    }
+                });
+                orbitTrail.innerHTML = `<svg width="100%" height="100%"><path d="${path}" stroke="#3399ff" fill="none"/></svg>`;
+            }
+
+            function startOrbit() {
+                function animate() {
+                    if (!isOrbiting) return;
+                    
+                    calculateOrbit();
+                    angle += velocity / 1000;
+                    
+                    const centerX = centralBody.offsetLeft + 25;
+                    const centerY = centralBody.offsetTop + 25;
+                    const x = centerX + radius * Math.cos(angle);
+                    const y = centerY + radius * Math.sin(angle);
+                    
+                    satellite.style.left = `${x}px`;
+                    satellite.style.top = `${y}px`;
+                    
+                    // Record trail points
+                    trailPoints.push({x: x, y: y});
+                    if (trailPoints.length > 100) trailPoints.shift();
+                    updateOrbitTrail();
+
+                    requestAnimationFrame(animate);
+                }
+                animate();
+            }
+
+            // Initialize first orbit
+            startOrbit();
+        }
+
+        // Initialize particles and stars when page loads
+        createParticles();
+        createStars();
+        setInterval(createMeteor, 3000);
+    </script>
+
+</body></html>

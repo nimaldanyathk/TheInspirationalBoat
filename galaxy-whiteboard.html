@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Inspirational Boat - Galaxy Whiteboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      font-family: 'Reospec.otf', sans-serif;
+    }
+
+    body.light {
+      background-color: #ffffff;
+    }
+
+    body.dark {
+      background-color: #0b0c1e;
+    }
+
+    #controls {
+      position: absolute;
+      top: 10px;
+      left: 80px;
+      z-index: 10;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 8px 12px;
+      background-color: #ffffff22;
+      border: 1px solid #ffffff55;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+    }
+
+    .btn:hover {
+      background-color: #ffffff44;
+    }
+
+    .theme-toggle.light {
+      background-color: #222;
+      color: #fff;
+    }
+
+    .theme-toggle.dark {
+      background-color: #eee;
+      color: #111;
+    }
+
+    #logo {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 50px;
+      z-index: 10;
+    }
+
+    #toolbar {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background-color: #00000055;
+      padding: 10px;
+      border-radius: 10px;
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+      flex-wrap: wrap;
+    }
+
+    canvas {
+      display: block;
+    }
+
+    #particle-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="dark">
+
+    <a href="links.html">
+        <img id="logo" src="starlogo.png" alt="The Inspirational Boat Logo" />
+    </a>
+  <div id="controls">
+    <button class="btn" onclick="clearCanvas()">🧹 Clear</button>
+    <button class="btn" onclick="download()">💾 Save</button>
+    <button class="btn theme-toggle" onclick="toggleTheme()">🌗 Theme</button>
+    
+  </div>
+
+  <div id="toolbar">
+    <label style="color: white">Brush Size: 
+      <input type="range" min="1" max="25" value="3" id="brushSize" />
+    </label>
+    <label style="color: white">Brush Color: 
+      <input type="color" id="brushColor" value="#ffffff" />
+    </label>
+  </div>
+
+  <canvas id="galaxy-canvas"></canvas>
+  <canvas id="particle-bg"></canvas>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
+
+  <script>
+    const canvasEl = document.getElementById("galaxy-canvas");
+    const canvas = new fabric.Canvas("galaxy-canvas", { isDrawingMode: true });
+
+    // Resize canvas
+    function resizeCanvas() {
+      canvas.setHeight(window.innerHeight);
+      canvas.setWidth(window.innerWidth);
+      canvas.renderAll();
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Sparkle brush
+    const sparkleBrush = new fabric.PencilBrush(canvas);
+    sparkleBrush.color = "#ffffff";
+    sparkleBrush.width = 3;
+    sparkleBrush.shadow = new fabric.Shadow({
+      color: "#b6e0ff",
+      blur: 10,
+      offsetX: 0,
+      offsetY: 0
+    });
+    canvas.freeDrawingBrush = sparkleBrush;
+
+    // Save
+    function download() {
+      const dataURL = canvas.toDataURL({ format: 'png', multiplier: 2 });
+      const link = document.createElement("a");
+      link.href = dataURL;
+      link.download = "my-galaxy.png";
+      link.click();
+    }
+
+    // Clear
+    function clearCanvas() {
+      if (confirm("Clear your beautiful galaxy?")) {
+        canvas.clear();
+        canvas.setBackgroundColor(body.classList.contains("dark") ? "#0b0c1e" : "#fff", canvas.renderAll.bind(canvas));
+      }
+    }
+
+    // Theme toggle
+    const body = document.body;
+    const themeBtn = document.querySelector('.theme-toggle');
+
+    function toggleTheme() {
+      body.classList.toggle("dark");
+      body.classList.toggle("light");
+
+      if (body.classList.contains("light")) {
+        canvas.setBackgroundColor("#ffffff", canvas.renderAll.bind(canvas));
+        themeBtn.classList.remove("light");
+        themeBtn.classList.add("dark");
+      } else {
+        canvas.setBackgroundColor("#0b0c1e", canvas.renderAll.bind(canvas));
+        themeBtn.classList.remove("dark");
+        themeBtn.classList.add("light");
+      }
+    }
+
+    // Brush controls
+    document.getElementById("brushSize").oninput = function () {
+      sparkleBrush.width = parseInt(this.value);
+    };
+
+    document.getElementById("brushColor").oninput = function () {
+      sparkleBrush.color = this.value;
+      sparkleBrush.shadow.color = this.value;
+    };
+
+   
+
+    // Particle stars background
+    const stars = [];
+    const starCanvas = document.getElementById('particle-bg');
+    const starCtx = starCanvas.getContext('2d');
+
+    function resizeStarCanvas() {
+      starCanvas.width = window.innerWidth;
+      starCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeStarCanvas);
+    resizeStarCanvas();
+
+    for (let i = 0; i < 100; i++) {
+      stars.push({
+        x: Math.random() * starCanvas.width,
+        y: Math.random() * starCanvas.height,
+        radius: Math.random() * 1.5 + 0.5,
+        alpha: Math.random(),
+        delta: Math.random() * 0.02
+      });
+    }
+
+    function drawStars() {
+      starCtx.clearRect(0, 0, starCanvas.width, starCanvas.height);
+      for (let star of stars) {
+        starCtx.beginPath();
+        starCtx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
+        starCtx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+        starCtx.fill();
+
+        star.alpha += star.delta;
+        if (star.alpha <= 0 || star.alpha >= 1) {
+          star.delta *= -1;
+        }
+      }
+      requestAnimationFrame(drawStars);
+    }
+    drawStars();
+
+    // Initial canvas background
+    canvas.setBackgroundColor("#0b0c1e", canvas.renderAll.bind(canvas));
+  </script>
+  <script src="renderer.js"></script>
+</body>
+</html>

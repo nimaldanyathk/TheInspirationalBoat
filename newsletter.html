@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Form | The Inspirational Boat</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        @font-face {
+            font-family: 'Reospec';
+            src: url('Reospec.otf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Reospec', sans-serif;
+      color: white;
+    }
+
+    #vanta-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      font-size: 2.8rem;
+      letter-spacing: 1px;
+    }
+
+    form {
+      background: rgba(31, 47, 69, 0.9);
+      padding: 25px 35px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+      width: 100%;
+      max-width: 520px;
+      backdrop-filter: blur(8px);
+    }
+
+    input, textarea, button, select {
+      width: 100%;
+      margin: 12px 0;
+      padding: 14px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    input, textarea, select {
+      background: #314e68;
+      color: white;
+    }
+
+    button {
+      background-color: #0a366f;
+      color: black;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #00a48a;
+      transform: scale(1.03);
+    }
+
+    .rating {
+      display: flex;
+      gap: 10px;
+      font-size: 24px;
+      justify-content: center;
+      margin: 10px 0;
+      cursor: pointer;
+    }
+
+    .rating span {
+      transition: color 0.2s;
+    }
+
+    .rating span.selected {
+      color: #ffcc00;
+    }
+
+    .confirmation {
+      margin-top: 20px;
+      display: none;
+      padding: 20px;
+      background: #2e7d32;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 500px;
+    }
+
+    .confirmation.active {
+      display: block;
+    }
+
+    .confirmation-icon {
+      font-size: 40px;
+      color: #a5f7c2;
+    }
+
+    .confirmation-title {
+      font-size: 24px;
+      margin: 10px 0;
+    }
+
+    .confirmation-message {
+      font-size: 18px;
+    }
+
+    /* New back button styles */
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background: rgba(0, 123, 255, 0.2);
+      border: 1px solid #007bff;
+      border-radius: 5px;
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      font-family: 'Reospec', sans-serif;
+    }
+    .back-button:hover {
+      background: rgba(0, 123, 255, 0.4);
+      box-shadow: 0 0 15px #007bff;
+      transform: scale(1.05);
+    }
+  </style>
+
+  <!-- Vanta.js and Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+
+  <!-- EmailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+  <!-- Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- Back button added here -->
+  <a href="links.html" class="back-button">Back to Home</a>
+
+  <div id="vanta-bg"></div>
+
+  <h1>Contact Mission Control</h1>
+
+  <form id="contact-form">
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="email" placeholder="Your Email" required />
+    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+
+    <!-- Reason for contact -->
+    <select name="reason" required>
+      <option value="" disabled selected>Select Reason</option>
+      <option value="feedback">Feedback</option>
+      <option value="collaboration">Collaboration</option>
+      <option value="bug">Report a Bug</option>
+      <option value="other">Other</option>
+    </select>
+
+    <!-- Star Rating -->
+    <div class="rating" id="rating-stars">
+      <span data-rate="1">&#9733;</span>
+      <span data-rate="2">&#9733;</span>
+      <span data-rate="3">&#9733;</span>
+      <span data-rate="4">&#9733;</span>
+      <span data-rate="5">&#9733;</span>
+    </div>
+    <input type="hidden" name="rating" id="rating-value" />
+
+    <button type="submit">Launch Message</button>
+  </form>
+
+  <!-- Confirmation Message -->
+  <div id="confirmation" class="confirmation">
+    <i class="fas fa-check-circle confirmation-icon"></i>
+    <h2 class="confirmation-title">Thank you!</h2>
+    <p class="confirmation-message">Your message has been sent successfully.</p>
+  </div>
+
+  <script>
+    // EmailJS Init
+    (function () {
+      emailjs.init("Yg7D8M7CVIiHHQy5o");
+    })();
+
+    // Form submission
+    document.getElementById("contact-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      emailjs.sendForm("service_g11jybn", "template_2bwgorp", this)
+        .then(() => {
+          this.reset();
+          document.getElementById("confirmation").classList.add("active");
+        })
+        .catch(() => alert("Oops! Something went wrong."));
+    });
+
+    // Rating Stars
+    const stars = document.querySelectorAll("#rating-stars span");
+    const ratingInput = document.getElementById("rating-value");
+
+    stars.forEach(star => {
+      star.addEventListener("click", () => {
+        const rating = star.getAttribute("data-rate");
+        ratingInput.value = rating;
+
+        stars.forEach(s => s.classList.remove("selected"));
+        for (let i = 0; i < rating; i++) {
+          stars[i].classList.add("selected");
+        }
+      });
+    });
+
+    // Vanta Background
+    VANTA.NET({
+      el: "#vanta-bg",
+      mouseControls: true,
+      touchControls: true,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.0,
+      scaleMobile: 1.0,
+      color: 0x007bff,           // Bright blue dots/lines (like Bootstrap blue)
+      backgroundColor: 0x000000  // Pure black background
+    });
+  </script>
+</body>
+</html>

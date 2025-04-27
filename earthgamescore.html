@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earth's Cosmic Journey</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scrolling */
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            text-align: center;
+            font-family: 'Press Start 2P', cursive;
+            color: white;
+        }
+        canvas {
+            border: 3px solid white;
+            background-color: black;
+        }
+        #scoreboard {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+        #restartButton {
+            display: none;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-family: 'Press Start 2P', cursive;
+            cursor: pointer;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Earth's Cosmic Journey</h1>
+    <div id="scoreboard">Score: <span id="score">0</span></div>
+    <canvas id="gameCanvas"></canvas>
+    <button id="restartButton" onclick="restartGame()">Restart</button>
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth * 0.8;
+            canvas.height = window.innerHeight * 0.8;
+        }
+        
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+        
+        let earthImg = new Image();
+        earthImg.src = "earth.png"; 
+        let deadEarthImg = new Image();
+        deadEarthImg.src = "dead_earth.png";
+        let blackHoleImg = new Image();
+        blackHoleImg.src = "blackhole.png";
+
+        let earth = { x: canvas.width / 2 - 25, y: canvas.height - 100, width: 50, height: 50, speed: 5, alive: true };
+        let blackHoles = [];
+        let score = 0;
+        let gameOver = false;
+
+        function spawnBlackHole() {
+            if (gameOver) return;
+            let bh = {
+                x: Math.random() * (canvas.width - 50),
+                y: 0,
+                width: 50,
+                height: 50,
+                speed: 3 + Math.random() * 2
+            };
+            blackHoles.push(bh);
+        }
+        setInterval(spawnBlackHole, 2000);
+
+        document.addEventListener("keydown", (event) => {
+            if (earth.alive) {
+                if (event.key === "ArrowLeft" && earth.x > 0) earth.x -= earth.speed;
+                if (event.key === "ArrowRight" && earth.x < canvas.width - earth.width) earth.x += earth.speed;
+                if (event.key === "ArrowUp" && earth.y > 0) earth.y -= earth.speed;
+                if (event.key === "ArrowDown" && earth.y < canvas.height - earth.height) earth.y += earth.speed;
+            }
+        });
+
+        function update() {
+            if (gameOver) return;
+            
+            for (let i = 0; i < blackHoles.length; i++) {
+                blackHoles[i].y += blackHoles[i].speed;
+                
+                if (
+                    earth.x < blackHoles[i].x + blackHoles[i].width &&
+                    earth.x + earth.width > blackHoles[i].x &&
+                    earth.y < blackHoles[i].y + blackHoles[i].height &&
+                    earth.y + earth.height > blackHoles[i].y
+                ) {
+                    earth.alive = false;
+                    gameOver = true;
+                    document.getElementById("restartButton").style.display = "block";
+                }
+            }
+            blackHoles = blackHoles.filter(bh => bh.y < canvas.height);
+            if (!gameOver) score++;
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            if (earth.alive) {
+                ctx.drawImage(earthImg, earth.x, earth.y, earth.width, earth.height);
+            } else {
+                ctx.drawImage(deadEarthImg, earth.x, earth.y, earth.width, earth.height);
+                ctx.fillStyle = "red";
+                ctx.font = "30px 'Press Start 2P'";
+                ctx.fillText("GAME OVER", canvas.width / 2 - 100, canvas.height / 2);
+            }
+            
+            blackHoles.forEach(bh => {
+                ctx.drawImage(blackHoleImg, bh.x, bh.y, bh.width, bh.height);
+            });
+
+            document.getElementById("score").innerText = score;
+        }
+
+        function restartGame() {
+            earth = { x: canvas.width / 2 - 25, y: canvas.height - 100, width: 50, height: 50, speed: 5, alive: true };
+            blackHoles = [];
+            score = 0;
+            gameOver = false;
+            document.getElementById("restartButton").style.display = "none";
+            gameLoop();
+        }
+
+        function gameLoop() {
+            update();
+            draw();
+            if (!gameOver) requestAnimationFrame(gameLoop);
+        }
+        gameLoop();
+    </script>
+</body>
+</html>
