@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
             font-family: Arial, sans-serif;
             overflow: hidden;
         }
+
         .container {
             display: flex;
             justify-content: center;
@@ -19,6 +21,7 @@
             height: 100vh;
             gap: 50px;
         }
+
         .game-link {
             text-decoration: none;
             color: white;
@@ -26,10 +29,12 @@
             transition: transform 0.5s ease-out, filter 0.5s ease-out;
             will-change: transform, filter;
         }
+
         .game-link:hover {
             transform: scale(1.15);
             filter: drop-shadow(0 0 25px cyan);
         }
+
         img {
             width: 200px;
             height: auto;
@@ -37,20 +42,24 @@
             transition: transform 0.8s ease-out, filter 0.8s ease-out;
             will-change: transform, filter;
         }
+
         img:hover {
             transform: rotateY(360deg) scale(1.2);
             filter: drop-shadow(0 0 30px cyan);
         }
+
         .title {
             margin-top: 10px;
             font-size: 20px;
             transition: color 0.4s ease-out, text-shadow 0.4s ease-out;
             will-change: color, text-shadow;
         }
+
         .title:hover {
             color: cyan;
             text-shadow: 0 0 20px cyan;
         }
+
         .home-button {
             position: absolute;
             top: 20px;
@@ -64,27 +73,31 @@
             font-size: 16px;
             transition: all 0.3s ease;
         }
+
         .home-button:hover {
             background: rgba(0, 255, 255, 0.4);
             box-shadow: 0 0 15px cyan;
         }
     </style>
 </head>
+
 <body>
     <a href="links.html" class="home-button">Home Page</a>
-    
+
     <div class="container">
         <a href="earthgamescore.html" class="game-link">
-            <img src="astro_block.png" alt="Astro Game">
+            <img src="../assets/images/astro_block.png" alt="Astro Game">
             <div class="title">Astro Game</div>
         </a>
         <a href="blockbb.html" class="game-link">
-            <img src="block_break.png" alt="Astro Block Breaker">
+            <img src="../assets/images/block_break.png" alt="Astro Block Breaker">
             <div class="title">Astro Block Breaker</div>
         </a><br>
-        <a href="Interactive Space Games - The Inspirational Boat.html" class="more-games"><img src="moregames.png" alt="Astro Block Breaker">
+        <a href="interactive_games.html" class="more-games"><img
+                src="../assets/images/moregames.png" alt="Astro Block Breaker">
             <div class="title">More Games</div>
         </a>
     </div>
 </body>
+
 </html>

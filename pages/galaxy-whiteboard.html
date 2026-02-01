@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>The Inspirational Boat - Galaxy Whiteboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-
-    html, body {
+    html,
+    body {
       margin: 0;
       padding: 0;
       overflow: hidden;
       height: 100%;
-      font-family: 'Reospec.otf', sans-serif;
+      font-family: 'assets/fonts/Reospec.otf', sans-serif;
     }
 
     body.light {
@@ -92,23 +93,24 @@
     }
   </style>
 </head>
+
 <body class="dark">
 
-    <a href="links.html">
-        <img id="logo" src="starlogo.png" alt="The Inspirational Boat Logo" />
-    </a>
+  <a href="links.html">
+    <img id="logo" src="../assets/images/starlogo.png" alt="The Inspirational Boat Logo" />
+  </a>
   <div id="controls">
     <button class="btn" onclick="clearCanvas()">🧹 Clear</button>
     <button class="btn" onclick="download()">💾 Save</button>
     <button class="btn theme-toggle" onclick="toggleTheme()">🌗 Theme</button>
-    
+
   </div>
 
   <div id="toolbar">
-    <label style="color: white">Brush Size: 
+    <label style="color: white">Brush Size:
       <input type="range" min="1" max="25" value="3" id="brushSize" />
     </label>
-    <label style="color: white">Brush Color: 
+    <label style="color: white">Brush Color:
       <input type="color" id="brushColor" value="#ffffff" />
     </label>
   </div>
@@ -189,7 +191,7 @@
       sparkleBrush.shadow.color = this.value;
     };
 
-   
+
 
     // Particle stars background
     const stars = [];
@@ -233,6 +235,7 @@
     // Initial canvas background
     canvas.setBackgroundColor("#0b0c1e", canvas.renderAll.bind(canvas));
   </script>
-  <script src="renderer.js"></script>
+  <script src="../js/renderer.js"></script>
 </body>
+
 </html>

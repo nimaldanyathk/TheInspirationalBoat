@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,13 +16,13 @@
             --text-secondary: #a0a0a0;
             --text-dark: #707070;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--primary);
@@ -29,7 +30,7 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-        
+
         header {
             background-color: rgba(18, 18, 18, 0.95);
             padding: 1.5rem 0;
@@ -40,37 +41,37 @@
             transition: all 0.3s ease;
             border-bottom: 1px solid rgba(255, 165, 0, 0.1);
         }
-        
+
         header.scrolled {
             padding: 1rem 0;
             backdrop-filter: blur(5px);
             background-color: rgba(18, 18, 18, 0.85);
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
         }
-        
+
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
             color: var(--accent);
             letter-spacing: 1px;
         }
-        
+
         .nav-links {
             display: flex;
             gap: 2rem;
         }
-        
+
         .nav-links a {
             color: var(--text);
             text-decoration: none;
@@ -79,7 +80,7 @@
             position: relative;
             padding: 0.5rem 0;
         }
-        
+
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -90,29 +91,29 @@
             background-color: var(--accent);
             transition: width 0.3s ease;
         }
-        
+
         .nav-links a:hover {
             color: var(--accent);
         }
-        
+
         .nav-links a:hover::after {
             width: 100%;
         }
-        
+
         .hero {
             height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('supermassive blackhole.webp') center/cover no-repeat;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('../assets/images/supermassive blackhole.webp') center/cover no-repeat;
         }
-        
+
         .hero-content {
             max-width: 800px;
         }
-        
+
         .hero-content h1 {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
@@ -120,7 +121,7 @@
             color: var(--accent);
             text-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
         }
-        
+
         .hero-content p {
             font-size: 1.2rem;
             color: var(--text-secondary);
@@ -128,18 +129,19 @@
             animation: fadeIn 1s ease-in 0.3s forwards;
             opacity: 0;
         }
-        
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
         .btn {
             display: inline-block;
             background-color: transparent;
@@ -154,17 +156,17 @@
             font-weight: 600;
             letter-spacing: 0.5px;
         }
-        
+
         .btn:hover {
             background-color: rgba(255, 165, 0, 0.1);
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(255, 165, 0, 0.2);
         }
-        
+
         section {
             padding: 6rem 0;
         }
-        
+
         .section-title {
             text-align: center;
             font-size: 2.5rem;
@@ -175,7 +177,7 @@
             left: 50%;
             transform: translateX(-50%);
         }
-        
+
         .section-title::after {
             content: '';
             position: absolute;
@@ -185,7 +187,7 @@
             height: 3px;
             background: linear-gradient(90deg, transparent, var(--accent), transparent);
         }
-        
+
         .section-subtitle {
             font-size: 1.8rem;
             color: var(--accent-light);
@@ -194,19 +196,19 @@
             border-left: 4px solid var(--accent);
             padding-left: 1rem;
         }
-        
+
         p {
             margin-bottom: 1.5rem;
             line-height: 1.7;
         }
-        
+
         .black-hole-types {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
-        
+
         .black-hole-card {
             background-color: var(--secondary);
             border-radius: 8px;
@@ -215,41 +217,41 @@
             height: 100%;
             border: 1px solid rgba(255, 165, 0, 0.1);
         }
-        
+
         .black-hole-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 10px 25px rgba(255, 165, 0, 0.1);
             border-color: rgba(255, 165, 0, 0.3);
         }
-        
+
         .card-img {
             width: 100%;
             height: 250px;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
-        
+
         .black-hole-card:hover .card-img {
             transform: scale(1.05);
         }
-        
+
         .card-content {
             padding: 1.5rem;
         }
-        
+
         .card-title {
             font-size: 1.5rem;
             margin-bottom: 1rem;
             color: var(--accent);
         }
-        
+
         .characteristics {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
-        
+
         .characteristic-card {
             background-color: var(--secondary);
             border-radius: 8px;
@@ -258,25 +260,25 @@
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 165, 0, 0.1);
         }
-        
+
         .characteristic-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 5px 15px rgba(255, 165, 0, 0.1);
             border-color: rgba(255, 165, 0, 0.3);
         }
-        
+
         .characteristic-icon {
             font-size: 3rem;
             color: var(--accent);
             margin-bottom: 1rem;
         }
-        
+
         .timeline {
             position: relative;
             max-width: 800px;
             margin: 3rem auto;
         }
-        
+
         .timeline::after {
             content: '';
             position: absolute;
@@ -287,7 +289,7 @@
             left: 50%;
             margin-left: -2px;
         }
-        
+
         .timeline-item {
             padding: 10px 40px;
             position: relative;
@@ -295,19 +297,19 @@
             animation: fadeIn 1s ease;
             opacity: 0;
         }
-        
+
         .timeline-item.shown {
             opacity: 1;
         }
-        
+
         .timeline-item:nth-child(odd) {
             left: 0;
         }
-        
+
         .timeline-item:nth-child(even) {
             left: 50%;
         }
-        
+
         .timeline-item::after {
             content: '';
             position: absolute;
@@ -319,26 +321,26 @@
             border: 4px solid var(--secondary);
             box-shadow: 0 0 0 2px var(--accent);
         }
-        
+
         .timeline-item:nth-child(odd)::after {
             right: -12px;
         }
-        
+
         .timeline-item:nth-child(even)::after {
             left: -12px;
         }
-        
+
         .timeline-content {
             padding: 20px;
             background-color: var(--secondary);
             border-radius: 8px;
             border: 1px solid rgba(255, 165, 0, 0.1);
         }
-        
+
         .timeline-content:hover {
             border-color: rgba(255, 165, 0, 0.3);
         }
-        
+
         .timeline-year {
             color: var(--accent);
             font-weight: bold;
@@ -347,7 +349,7 @@
             padding-bottom: 3px;
             border-bottom: 2px solid var(--accent);
         }
-        
+
         .parallax {
             position: relative;
             height: 500px;
@@ -361,9 +363,9 @@
             color: var(--text);
             text-align: center;
             overflow: hidden;
-            background-image: url('intermediate blackhole.jpeg');
+            background-image: url('../assets/images/intermediate blackhole.jpeg');
         }
-        
+
         .parallax::before {
             content: '';
             position: absolute;
@@ -374,19 +376,19 @@
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
             z-index: 0;
         }
-        
+
         .parallax-content {
             max-width: 800px;
             padding: 2rem;
             z-index: 1;
         }
-        
+
         .parallax-content h2 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
             color: var(--accent);
         }
-        
+
         .animations {
             margin-top: 3rem;
             position: relative;
@@ -399,13 +401,13 @@
             justify-content: center;
             border: 1px solid rgba(255, 165, 0, 0.1);
         }
-        
+
         .black-hole-animation {
             position: relative;
             width: 200px;
             height: 200px;
         }
-        
+
         .accretion-disk {
             position: absolute;
             width: 300px;
@@ -416,7 +418,7 @@
             animation: rotate 20s linear infinite;
             box-shadow: 0 0 30px rgba(255, 165, 0, 0.5);
         }
-        
+
         .event-horizon {
             position: absolute;
             top: 50px;
@@ -427,23 +429,24 @@
             border-radius: 50%;
             box-shadow: 0 0 50px rgba(255, 165, 0, 0.3);
         }
-        
+
         @keyframes rotate {
             from {
                 transform: rotateX(70deg) rotateZ(0deg);
             }
+
             to {
                 transform: rotateX(70deg) rotateZ(360deg);
             }
         }
-        
+
         .stars {
             position: absolute;
             width: 100%;
             height: 100%;
             z-index: -1;
         }
-        
+
         .star {
             position: absolute;
             background-color: var(--accent-light);
@@ -452,24 +455,25 @@
             border-radius: 50%;
             animation: twinkle 2s infinite alternate;
         }
-        
+
         @keyframes twinkle {
             from {
                 opacity: 0.3;
             }
+
             to {
                 opacity: 1;
                 box-shadow: 0 0 5px var(--accent-light);
             }
         }
-        
+
         footer {
             background-color: var(--secondary);
             padding: 3rem 0;
             text-align: center;
             border-top: 1px solid rgba(255, 165, 0, 0.1);
         }
-        
+
         .footer-links {
             display: flex;
             justify-content: center;
@@ -477,23 +481,23 @@
             margin-bottom: 2rem;
             flex-wrap: wrap;
         }
-        
+
         .footer-links a {
             color: var(--text);
             text-decoration: none;
             transition: color 0.3s ease;
             font-weight: 500;
         }
-        
+
         .footer-links a:hover {
             color: var(--accent);
         }
-        
+
         .copyright {
             color: var(--text-secondary);
             font-size: 0.9rem;
         }
-        
+
         /* Back to top button */
         .back-to-top {
             position: fixed;
@@ -515,69 +519,69 @@
             z-index: 99;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
-        
+
         .back-to-top.visible {
             opacity: 1;
             visibility: visible;
         }
-        
+
         .back-to-top:hover {
             background-color: var(--accent-light);
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(255, 165, 0, 0.3);
         }
-        
+
         @media (max-width: 768px) {
             .hero-content h1 {
                 font-size: 2.5rem;
             }
-            
+
             .section-title {
                 font-size: 2rem;
             }
-            
+
             .timeline::after {
                 left: 31px;
             }
-            
+
             .timeline-item {
                 width: 100%;
                 padding-left: 70px;
                 padding-right: 25px;
             }
-            
+
             .timeline-item:nth-child(even) {
                 left: 0;
             }
-            
+
             .timeline-item:nth-child(odd)::after,
             .timeline-item:nth-child(even)::after {
                 left: 18px;
             }
-            
+
             .nav-links {
                 gap: 1rem;
             }
         }
-        
+
         @media (max-width: 480px) {
             .hero-content h1 {
                 font-size: 2rem;
             }
-            
+
             .hero-content p {
                 font-size: 1rem;
             }
-            
+
             .section-title {
                 font-size: 1.8rem;
             }
-            
+
             .navbar {
                 flex-direction: column;
                 gap: 1rem;
             }
-            
+
             .nav-links {
                 flex-wrap: wrap;
                 justify-content: center;
@@ -585,12 +589,14 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header id="header">
         <div class="container">
             <nav class="navbar"><a href="links.html">
-                <div class="logo">Cosmic Mysteries</div></a>
+                    <div class="logo">Cosmic Mysteries</div>
+                </a>
                 <div class="nav-links">
                     <a href="#intro">Introduction</a>
                     <a href="#types">Types</a>
@@ -601,26 +607,32 @@
             </nav>
         </div>
     </header>
-    
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
                 <h1>Exploring the Mysteries of Black Holes</h1>
-                <p>Journey with us into the most enigmatic objects in our universe - where gravity is so extreme that even light cannot escape.</p>
+                <p>Journey with us into the most enigmatic objects in our universe - where gravity is so extreme that
+                    even light cannot escape.</p>
                 <a href="#intro" class="btn">Begin Exploration</a>
             </div>
         </div>
     </section>
-    
+
     <!-- Introduction Section -->
     <section id="intro">
         <div class="container">
             <h2 class="section-title">What Are Black Holes?</h2>
-            <p>Black holes are regions in space where gravity is so strong that nothing, not even light, can escape once it enters. This property makes black holes invisible to direct observation, which is why scientists detect them through their effects on surrounding matter and space.</p>
-            
-            <p>The concept of black holes emerged from Albert Einstein's theory of general relativity, published in 1915, which predicted that a sufficiently compact mass could deform spacetime to form a black hole. The boundary of a black hole, called the event horizon, marks the point of no return - anything that crosses this boundary can never escape the black hole's gravitational pull.</p>
-            
+            <p>Black holes are regions in space where gravity is so strong that nothing, not even light, can escape once
+                it enters. This property makes black holes invisible to direct observation, which is why scientists
+                detect them through their effects on surrounding matter and space.</p>
+
+            <p>The concept of black holes emerged from Albert Einstein's theory of general relativity, published in
+                1915, which predicted that a sufficiently compact mass could deform spacetime to form a black hole. The
+                boundary of a black hole, called the event horizon, marks the point of no return - anything that crosses
+                this boundary can never escape the black hole's gravitational pull.</p>
+
             <div class="animations">
                 <div class="black-hole-animation">
                     <div class="accretion-disk"></div>
@@ -628,203 +640,274 @@
                 </div>
                 <div class="stars"></div>
             </div>
-            
-            <p>Inside a black hole, our understanding of physics breaks down. At the center lies what physicists call a singularity - a point of infinite density where the laws of physics as we know them cease to operate. This makes black holes not just fascinating astronomical objects but also crucial test beds for theories about the fundamental nature of space, time, and gravity.</p>
+
+            <p>Inside a black hole, our understanding of physics breaks down. At the center lies what physicists call a
+                singularity - a point of infinite density where the laws of physics as we know them cease to operate.
+                This makes black holes not just fascinating astronomical objects but also crucial test beds for theories
+                about the fundamental nature of space, time, and gravity.</p>
         </div>
     </section>
-    
+
     <!-- Types of Black Holes Section -->
     <section id="types" style="background-color: var(--secondary);">
         <div class="container">
             <h2 class="section-title">Types of Black Holes</h2>
-            <p>Scientists classify black holes into several categories based on their mass and formation mechanism. Here are the main types:</p>
-            
+            <p>Scientists classify black holes into several categories based on their mass and formation mechanism. Here
+                are the main types:</p>
+
             <div class="black-hole-types">
                 <div class="black-hole-card">
-                    <img src="primordial blackhole.jpg" alt="Primordial Black Hole" class="card-img">
+                    <img src="../assets/images/primordial blackhole.jpg" alt="Primordial Black Hole" class="card-img">
                     <div class="card-content">
                         <h3 class="card-title">Primordial Black Holes</h3>
-                        <p>Primordial black holes are hypothetical black holes that formed in the early universe, soon after the Big Bang. Unlike other black holes, they weren't created from collapsing stars but from extremely dense regions in the early universe.</p>
-                        <p>These black holes could range from microscopic sizes to massive entities, and they are considered a potential candidate for dark matter. Despite extensive searches, primordial black holes have not been definitively detected yet.</p>
+                        <p>Primordial black holes are hypothetical black holes that formed in the early universe, soon
+                            after the Big Bang. Unlike other black holes, they weren't created from collapsing stars but
+                            from extremely dense regions in the early universe.</p>
+                        <p>These black holes could range from microscopic sizes to massive entities, and they are
+                            considered a potential candidate for dark matter. Despite extensive searches, primordial
+                            black holes have not been definitively detected yet.</p>
                     </div>
                 </div>
-                
+
                 <div class="black-hole-card">
-                    <img src="stellar blackhole.jpg" alt="Stellar Black Hole" class="card-img">
+                    <img src="../assets/images/stellar blackhole.jpg" alt="Stellar Black Hole" class="card-img">
                     <div class="card-content">
                         <h3 class="card-title">Stellar Black Holes</h3>
-                        <p>Stellar black holes form when massive stars (at least 20 times the mass of our Sun) exhaust their nuclear fuel and collapse under their own gravity. This collapse triggers a supernova explosion, leaving behind a black hole.</p>
-                        <p>These black holes typically have masses ranging from about 5 to 100 times that of our Sun. They are relatively common in our galaxy, with estimates suggesting there might be millions of stellar black holes in the Milky Way alone.</p>
+                        <p>Stellar black holes form when massive stars (at least 20 times the mass of our Sun) exhaust
+                            their nuclear fuel and collapse under their own gravity. This collapse triggers a supernova
+                            explosion, leaving behind a black hole.</p>
+                        <p>These black holes typically have masses ranging from about 5 to 100 times that of our Sun.
+                            They are relatively common in our galaxy, with estimates suggesting there might be millions
+                            of stellar black holes in the Milky Way alone.</p>
                     </div>
                 </div>
-                
+
                 <div class="black-hole-card">
-                    <img src="intermediate blackhole.jpeg" alt="Intermediate Black Hole" class="card-img">
+                    <img src="../assets/images/intermediate blackhole.jpeg" alt="Intermediate Black Hole" class="card-img">
                     <div class="card-content">
                         <h3 class="card-title">Intermediate Black Holes</h3>
-                        <p>Intermediate-mass black holes occupy the middle ground between stellar and supermassive black holes, with masses ranging from 100 to 100,000 times the Sun's mass.</p>
-                        <p>These black holes remain somewhat mysterious, with fewer confirmed observations than their smaller and larger counterparts. They may form through the merger of smaller black holes or from the direct collapse of massive gas clouds. Scientists believe they might be found in the centers of globular clusters.</p>
+                        <p>Intermediate-mass black holes occupy the middle ground between stellar and supermassive black
+                            holes, with masses ranging from 100 to 100,000 times the Sun's mass.</p>
+                        <p>These black holes remain somewhat mysterious, with fewer confirmed observations than their
+                            smaller and larger counterparts. They may form through the merger of smaller black holes or
+                            from the direct collapse of massive gas clouds. Scientists believe they might be found in
+                            the centers of globular clusters.</p>
                     </div>
                 </div>
-                
+
                 <div class="black-hole-card">
-                    <img src="supermassive blackhole.webp" alt="Supermassive Black Hole" class="card-img">
+                    <img src="../assets/images/supermassive blackhole.webp" alt="Supermassive Black Hole" class="card-img">
                     <div class="card-content">
                         <h3 class="card-title">Supermassive Black Holes</h3>
-                        <p>Supermassive black holes are the giants of their kind, with masses ranging from millions to billions of times that of our Sun. These colossal objects reside at the centers of most large galaxies, including our Milky Way (named Sagittarius A*).</p>
-                        <p>How these enormous black holes formed remains a significant question in astrophysics. They may have grown from smaller black holes by accreting matter and merging with other black holes, or they might have formed directly from the collapse of enormous gas clouds in the early universe.</p>
+                        <p>Supermassive black holes are the giants of their kind, with masses ranging from millions to
+                            billions of times that of our Sun. These colossal objects reside at the centers of most
+                            large galaxies, including our Milky Way (named Sagittarius A*).</p>
+                        <p>How these enormous black holes formed remains a significant question in astrophysics. They
+                            may have grown from smaller black holes by accreting matter and merging with other black
+                            holes, or they might have formed directly from the collapse of enormous gas clouds in the
+                            early universe.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <!-- Characteristics Section -->
     <section id="characteristics">
         <div class="container">
             <h2 class="section-title">Characteristics of Black Holes</h2>
             <p>Black holes are defined by several key characteristics that make them unique astronomical objects:</p>
-            
+
             <div class="characteristics">
                 <div class="characteristic-card">
                     <div class="characteristic-icon">⚫</div>
                     <h3>Event Horizon</h3>
-                    <p>The event horizon is the boundary defining the region from which nothing can escape. Once light or matter crosses this boundary, it's mathematically impossible for it to exit the black hole. The radius of the event horizon is known as the Schwarzschild radius.</p>
+                    <p>The event horizon is the boundary defining the region from which nothing can escape. Once light
+                        or matter crosses this boundary, it's mathematically impossible for it to exit the black hole.
+                        The radius of the event horizon is known as the Schwarzschild radius.</p>
                 </div>
-                
+
                 <div class="characteristic-card">
                     <div class="characteristic-icon">💫</div>
                     <h3>Singularity</h3>
-                    <p>At the center of a black hole lies what physicists call a singularity - a point of infinite density where space and time curve infinitely and the laws of physics break down. In rotating black holes, the singularity may be ring-shaped rather than a point.</p>
+                    <p>At the center of a black hole lies what physicists call a singularity - a point of infinite
+                        density where space and time curve infinitely and the laws of physics break down. In rotating
+                        black holes, the singularity may be ring-shaped rather than a point.</p>
                 </div>
-                
+
                 <div class="characteristic-card">
                     <div class="characteristic-icon">🌀</div>
                     <h3>Accretion Disk</h3>
-                    <p>Many black holes are surrounded by an accretion disk - a swirling disk of gas and dust that's being pulled into the black hole. As material in this disk falls inward, it heats up to millions of degrees and emits X-rays and other forms of radiation.</p>
+                    <p>Many black holes are surrounded by an accretion disk - a swirling disk of gas and dust that's
+                        being pulled into the black hole. As material in this disk falls inward, it heats up to millions
+                        of degrees and emits X-rays and other forms of radiation.</p>
                 </div>
-                
+
                 <div class="characteristic-card">
                     <div class="characteristic-icon">🔄</div>
                     <h3>Rotation</h3>
-                    <p>Black holes can rotate, carrying angular momentum from the matter that formed them. Rotating black holes (Kerr black holes) drag space-time around them, creating a region called the ergosphere where objects are forced to rotate with the black hole.</p>
+                    <p>Black holes can rotate, carrying angular momentum from the matter that formed them. Rotating
+                        black holes (Kerr black holes) drag space-time around them, creating a region called the
+                        ergosphere where objects are forced to rotate with the black hole.</p>
                 </div>
-                
+
                 <div class="characteristic-card">
                     <div class="characteristic-icon">⚡</div>
                     <h3>Jets</h3>
-                    <p>Some black holes emit powerful jets of particles and radiation along their axis of rotation. These jets can extend for thousands of light-years and are among the most energetic phenomena in the universe, typically associated with supermassive black holes at the centers of active galaxies.</p>
+                    <p>Some black holes emit powerful jets of particles and radiation along their axis of rotation.
+                        These jets can extend for thousands of light-years and are among the most energetic phenomena in
+                        the universe, typically associated with supermassive black holes at the centers of active
+                        galaxies.</p>
                 </div>
-                
+
                 <div class="characteristic-card">
                     <div class="characteristic-icon">🔊</div>
                     <h3>Hawking Radiation</h3>
-                    <p>Theoretical work by Stephen Hawking suggests that black holes aren't completely black but emit a faint radiation due to quantum effects near the event horizon. This radiation causes black holes to gradually lose mass and eventually evaporate, though this process is extremely slow for astronomical black holes.</p>
+                    <p>Theoretical work by Stephen Hawking suggests that black holes aren't completely black but emit a
+                        faint radiation due to quantum effects near the event horizon. This radiation causes black holes
+                        to gradually lose mass and eventually evaporate, though this process is extremely slow for
+                        astronomical black holes.</p>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <!-- Parallax Section -->
     <div class="parallax">
         <div class="parallax-content">
             <h2>Bending the Fabric of Space and Time</h2>
-            <p>Black holes represent the most extreme warping of spacetime in our universe, testing the limits of our understanding of physics and revealing the profound connection between matter, energy, space, and time.</p>
+            <p>Black holes represent the most extreme warping of spacetime in our universe, testing the limits of our
+                understanding of physics and revealing the profound connection between matter, energy, space, and time.
+            </p>
         </div>
     </div>
-    
+
     <!-- History Section -->
     <section id="history">
         <div class="container">
             <h2 class="section-title">The History of Black Hole Theory</h2>
-            <p>The concept of black holes has evolved dramatically over centuries, from a mathematical curiosity to a confirmed astrophysical reality:</p>
-            
+            <p>The concept of black holes has evolved dramatically over centuries, from a mathematical curiosity to a
+                confirmed astrophysical reality:</p>
+
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3 class="timeline-year">1783</h3>
-                        <p>John Michell proposes the concept of "dark stars" - objects so massive that light cannot escape their gravitational pull. This was the first conception of what we now call black holes, using Newtonian physics.</p>
+                        <p>John Michell proposes the concept of "dark stars" - objects so massive that light cannot
+                            escape their gravitational pull. This was the first conception of what we now call black
+                            holes, using Newtonian physics.</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3 class="timeline-year">1915</h3>
-                        <p>Albert Einstein publishes his theory of general relativity, which describes gravity as a geometric property of space and time, providing the theoretical framework necessary to understand black holes.</p>
+                        <p>Albert Einstein publishes his theory of general relativity, which describes gravity as a
+                            geometric property of space and time, providing the theoretical framework necessary to
+                            understand black holes.</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3 class="timeline-year">1916</h3>
-                        <p>Karl Schwarzschild solves Einstein's field equations for a point mass, finding that space-time contains a singularity - the first mathematical description of a black hole.</p>
+                        <p>Karl Schwarzschild solves Einstein's field equations for a point mass, finding that
+                            space-time contains a singularity - the first mathematical description of a black hole.</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3 class="timeline-year">1939</h3>
-                        <p>Robert Oppenheimer and others calculate that massive stars can collapse under their own gravity after exhausting their nuclear fuel, forming what would later be called black holes.</p>
+                        <p>Robert Oppenheimer and others calculate that massive stars can collapse under their own
+                            gravity after exhausting their nuclear fuel, forming what would later be called black holes.
+                        </p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3 class="timeline-year">1967</h3>
-                        <p>John Wheeler coins the term "black hole" during a lecture, providing a catchy name for these mysterious objects that would capture public imagination.</p>
+                        <p>John Wheeler coins the term "black hole" during a lecture, providing a catchy name for these
+                            mysterious objects that would capture public imagination.</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3 class="timeline-year">1974</h3>
-                        <p>Stephen Hawking theorizes that black holes emit radiation (now called Hawking radiation), suggesting that black holes can evaporate over time and challenging the notion that nothing can escape them.</p>
+                        <p>Stephen Hawking theorizes that black holes emit radiation (now called Hawking radiation),
+                            suggesting that black holes can evaporate over time and challenging the notion that nothing
+                            can escape them.</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3 class="timeline-year">2019</h3>
-                        <p>The Event Horizon Telescope collaboration releases the first direct image of a black hole's shadow, capturing the supermassive black hole at the center of galaxy M87.</p>
+                        <p>The Event Horizon Telescope collaboration releases the first direct image of a black hole's
+                            shadow, capturing the supermassive black hole at the center of galaxy M87.</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3 class="timeline-year">2020</h3>
-                        <p>Roger Penrose, Reinhard Genzel, and Andrea Ghez are awarded the Nobel Prize in Physics for their work on black holes, cementing black holes as fundamental to our understanding of the universe.</p>
+                        <p>Roger Penrose, Reinhard Genzel, and Andrea Ghez are awarded the Nobel Prize in Physics for
+                            their work on black holes, cementing black holes as fundamental to our understanding of the
+                            universe.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <!-- Effects Section -->
     <section id="effects" style="background-color: var(--secondary);">
         <div class="container">
             <h2 class="section-title">The Effects of Black Holes</h2>
-            
+
             <h3 class="section-subtitle">Gravitational Effects</h3>
-            <p>Black holes exert extraordinary gravitational influences on their surroundings. Near a black hole, time dilation occurs - time passes more slowly compared to observers farther away. This effect, called gravitational time dilation, has been observed in less extreme conditions and is a crucial aspect of Einstein's theory of general relativity.</p>
-            <p>The gravitational pull of black holes can capture stars in orbit around them. These stars can be gradually stripped of their outer layers, with the material forming an accretion disk around the black hole. In some cases, stars are completely torn apart in events known as tidal disruption events.</p>
-            
+            <p>Black holes exert extraordinary gravitational influences on their surroundings. Near a black hole, time
+                dilation occurs - time passes more slowly compared to observers farther away. This effect, called
+                gravitational time dilation, has been observed in less extreme conditions and is a crucial aspect of
+                Einstein's theory of general relativity.</p>
+            <p>The gravitational pull of black holes can capture stars in orbit around them. These stars can be
+                gradually stripped of their outer layers, with the material forming an accretion disk around the black
+                hole. In some cases, stars are completely torn apart in events known as tidal disruption events.</p>
+
             <h3 class="section-subtitle">Spaghettification</h3>
-            <p>One of the most dramatic effects near black holes is spaghettification - the vertical stretching and horizontal compression of objects caused by extreme tidal forces. As an object falls toward a black hole, the gravitational force on the part closer to the black hole becomes substantially stronger than on the part farther away, stretching the object into a long, thin shape resembling spaghetti.</p>
-            
+            <p>One of the most dramatic effects near black holes is spaghettification - the vertical stretching and
+                horizontal compression of objects caused by extreme tidal forces. As an object falls toward a black
+                hole, the gravitational force on the part closer to the black hole becomes substantially stronger than
+                on the part farther away, stretching the object into a long, thin shape resembling spaghetti.</p>
+
             <h3 class="section-subtitle">Gravitational Lensing</h3>
-            <p>Black holes bend light paths around them, creating a phenomenon known as gravitational lensing. This effect can magnify and distort the images of background objects, sometimes creating multiple images or Einstein rings. Astronomers use gravitational lensing to study distant galaxies that would otherwise be too faint to observe.</p>
-            
+            <p>Black holes bend light paths around them, creating a phenomenon known as gravitational lensing. This
+                effect can magnify and distort the images of background objects, sometimes creating multiple images or
+                Einstein rings. Astronomers use gravitational lensing to study distant galaxies that would otherwise be
+                too faint to observe.</p>
+
             <h3 class="section-subtitle">Jets and Radiation</h3>
-            <p>Some black holes, particularly supermassive ones in active galactic nuclei, generate enormous jets of particles and radiation that can extend for millions of light-years. These jets form when material spiraling into the black hole is accelerated to near the speed of light and channeled along the black hole's axis of rotation by magnetic fields.</p>
-            
+            <p>Some black holes, particularly supermassive ones in active galactic nuclei, generate enormous jets of
+                particles and radiation that can extend for millions of light-years. These jets form when material
+                spiraling into the black hole is accelerated to near the speed of light and channeled along the black
+                hole's axis of rotation by magnetic fields.</p>
+
             <h3 class="section-subtitle">Influence on Galaxy Evolution</h3>
-            <p>Supermassive black holes play a crucial role in the evolution of their host galaxies. The energy released as material falls into these black holes can heat surrounding gas, preventing it from cooling and forming stars. This process, called "black hole feedback," helps regulate star formation in galaxies and explains why the mass of a supermassive black hole correlates with properties of its host galaxy.</p>
-            
+            <p>Supermassive black holes play a crucial role in the evolution of their host galaxies. The energy released
+                as material falls into these black holes can heat surrounding gas, preventing it from cooling and
+                forming stars. This process, called "black hole feedback," helps regulate star formation in galaxies and
+                explains why the mass of a supermassive black hole correlates with properties of its host galaxy.</p>
+
             <h3 class="section-subtitle">Gravitational Waves</h3>
-            <p>When black holes orbit each other and eventually merge, they create ripples in spacetime called gravitational waves. First detected in 2015 by LIGO (Laser Interferometer Gravitational-Wave Observatory), these waves have opened a new window for astronomical observations, allowing scientists to detect black hole mergers across the universe.</p>
+            <p>When black holes orbit each other and eventually merge, they create ripples in spacetime called
+                gravitational waves. First detected in 2015 by LIGO (Laser Interferometer Gravitational-Wave
+                Observatory), these waves have opened a new window for astronomical observations, allowing scientists to
+                detect black hole mergers across the universe.</p>
         </div>
     </section>
-    
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -857,25 +940,25 @@
                 stars.appendChild(star);
             }
         }
-        
+
         // Scroll header effect
         function handleScroll() {
             const header = document.getElementById('header');
             const backToTop = document.getElementById('backToTop');
-            
+
             if (window.scrollY > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
-            
+
             // Show/hide back to top button
             if (window.scrollY > 300) {
                 backToTop.classList.add('visible');
             } else {
                 backToTop.classList.remove('visible');
             }
-            
+
             // Animate timeline items when in view
             const timelineItems = document.querySelectorAll('.timeline-item');
             timelineItems.forEach(item => {
@@ -885,15 +968,15 @@
                 }
             });
         }
-        
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
+
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
-                
+
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     window.scrollTo({
@@ -903,13 +986,14 @@
                 }
             });
         });
-        
+
         // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             createStars();
             window.addEventListener('scroll', handleScroll);
             handleScroll(); // Run once on load
         });
     </script>
 </body>
+
 </html>

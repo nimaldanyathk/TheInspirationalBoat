@@ -13,7 +13,7 @@ function createWindow() {
     },
   });
 
-  mainWindow.loadFile('welcome.html');
+  mainWindow.loadFile('../index.html');
 
   const menuTemplate = [
     {
@@ -22,31 +22,31 @@ function createWindow() {
         {
           label: 'Welcome Page 🛶',
           click: () => {
-            mainWindow.loadFile('welcome.html');
+            mainWindow.loadFile('../index.html');
           },
         },
         {
           label: 'Puzzle Page 🧩',
           click: () => {
-            mainWindow.loadFile('puzzle.html');
+            mainWindow.loadFile('../pages/puzzle.html');
           },
         },
         {
           label: 'Links Page 🔗',
           click: () => {
-            mainWindow.loadFile('links.html');
+            mainWindow.loadFile('../pages/links.html');
           },
         },
         {
           label: 'Newsletter 📬',
           click: () => {
-            mainWindow.loadFile('newsletter.html');
+            mainWindow.loadFile('../pages/newsletter.html');
           },
         },
         {
           label: 'Copyright Page ©️',
           click: () => {
-            mainWindow.loadFile('copyright.html');
+            mainWindow.loadFile('../pages/copyright.html');
           },
         },
       ],

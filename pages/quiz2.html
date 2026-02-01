@@ -1,19 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cosmic IQ Challenge</title>
     <style>
-        
-Copy
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmic IQ Challenge</title>
-    <style>
+        Copy < !DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Cosmic IQ Challenge</title><style>
+
         /* Add this new style for the home button */
         .home-button {
             position: fixed;
@@ -29,14 +23,15 @@ Copy
             transition: all 0.3s ease;
             z-index: 1000;
         }
+
         .home-button:hover {
             background: rgba(0, 255, 255, 0.4);
             box-shadow: 0 0 15px cyan;
         }
-        
+
         body {
             font-family: 'Arial', sans-serif;
-            background-image: url('space.webp');
+            background-image: url('../assets/images/space.webp');
             background-size: cover;
             background-attachment: fixed;
             color: #fff;
@@ -45,7 +40,7 @@ Copy
             line-height: 1.6;
             overflow-x: hidden;
         }
-        
+
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -56,19 +51,20 @@ Copy
             position: relative;
             overflow: hidden;
         }
-        
-        h1, h2 {
+
+        h1,
+        h2 {
             color: #4fc3f7;
             text-align: center;
             text-shadow: 0 0 10px rgba(79, 195, 247, 0.5);
         }
-        
+
         .quiz-intro {
             text-align: center;
             margin-bottom: 30px;
             animation: fadeIn 1s ease-in;
         }
-        
+
         .stars {
             position: absolute;
             top: 0;
@@ -78,14 +74,14 @@ Copy
             pointer-events: none;
             z-index: 0;
         }
-        
+
         .star {
             position: absolute;
             background-color: #fff;
             border-radius: 50%;
             animation: twinkle 2s infinite;
         }
-        
+
         .progress-container {
             width: 100%;
             height: 10px;
@@ -93,7 +89,7 @@ Copy
             border-radius: 5px;
             margin-bottom: 20px;
         }
-        
+
         .progress-bar {
             height: 100%;
             width: 0%;
@@ -101,12 +97,12 @@ Copy
             border-radius: 5px;
             transition: width 0.5s ease;
         }
-        
+
         .question-container {
             position: relative;
             min-height: 300px;
         }
-        
+
         .question {
             position: absolute;
             width: 100%;
@@ -119,23 +115,23 @@ Copy
             opacity: 0;
             display: none;
         }
-        
+
         .question.active {
             transform: translateX(0);
             opacity: 1;
             display: block;
         }
-        
+
         .question.prev {
             transform: translateX(-100%);
             opacity: 0;
             display: block;
         }
-        
+
         .options {
             margin-top: 15px;
         }
-        
+
         .options label {
             display: block;
             margin: 10px 0;
@@ -146,27 +142,27 @@ Copy
             transition: all 0.3s;
             transform-origin: left;
         }
-        
+
         .options label:hover {
             background-color: rgba(79, 195, 247, 0.3);
             transform: scale(1.02);
         }
-        
+
         .options input[type="radio"] {
             margin-right: 10px;
         }
-        
+
         .options label.selected {
             background-color: rgba(100, 255, 218, 0.3);
             border: 1px solid #64ffda;
         }
-        
+
         .nav-buttons {
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
         }
-        
+
         button {
             padding: 12px 20px;
             background-color: #0066cc;
@@ -179,12 +175,12 @@ Copy
             position: relative;
             overflow: hidden;
         }
-        
+
         button:hover {
             background-color: #4fc3f7;
             transform: scale(1.05);
         }
-        
+
         button:before {
             content: '';
             position: absolute;
@@ -197,18 +193,18 @@ Copy
             transform: translate(-50%, -50%);
             transition: width 0.6s, height 0.6s;
         }
-        
+
         button:hover:before {
             width: 300px;
             height: 300px;
         }
-        
+
         .submit-section {
             text-align: center;
             margin-top: 30px;
             display: none;
         }
-        
+
         #userName {
             padding: 12px;
             width: 300px;
@@ -219,7 +215,7 @@ Copy
             margin-bottom: 15px;
             text-align: center;
         }
-        
+
         #results {
             display: none;
             text-align: center;
@@ -229,7 +225,7 @@ Copy
             margin-top: 30px;
             animation: fadeIn 1s ease;
         }
-        
+
         #certificate {
             display: none;
             background-color: #0a192f;
@@ -241,7 +237,7 @@ Copy
             animation: fadeIn 1s ease;
             position: relative;
         }
-        
+
         .certificate-decoration {
             position: absolute;
             width: 100%;
@@ -250,49 +246,49 @@ Copy
             left: 0;
             pointer-events: none;
         }
-        
+
         .certificate-corner {
             position: absolute;
             width: 80px;
             height: 80px;
             border: 3px solid #64ffda;
         }
-        
+
         .top-left {
             top: 10px;
             left: 10px;
             border-right: none;
             border-bottom: none;
         }
-        
+
         .top-right {
             top: 10px;
             right: 10px;
             border-left: none;
             border-bottom: none;
         }
-        
+
         .bottom-left {
             bottom: 10px;
             left: 10px;
             border-right: none;
             border-top: none;
         }
-        
+
         .bottom-right {
             bottom: 10px;
             right: 10px;
             border-left: none;
             border-top: none;
         }
-        
+
         .certificate-header {
             font-size: 28px;
             color: #4fc3f7;
             margin-bottom: 20px;
             text-shadow: 0 0 10px rgba(79, 195, 247, 0.3);
         }
-        
+
         .certificate-name {
             font-size: 24px;
             margin: 20px 0;
@@ -300,11 +296,11 @@ Copy
             font-weight: bold;
             text-shadow: 0 0 5px rgba(100, 255, 218, 0.3);
         }
-        
+
         .certificate-text {
             margin: 15px 0;
         }
-        
+
         .iq-score {
             font-size: 28px;
             font-weight: bold;
@@ -316,7 +312,7 @@ Copy
             margin: 10px 0;
             animation: pulse 2s infinite;
         }
-        
+
         .grade {
             font-size: 24px;
             font-weight: bold;
@@ -327,7 +323,7 @@ Copy
             border-radius: 5px;
             background-color: rgba(255, 215, 0, 0.1);
         }
-        
+
         .timer-container {
             position: absolute;
             top: 20px;
@@ -342,13 +338,13 @@ Copy
             align-items: center;
             border: 2px solid #4fc3f7;
         }
-        
+
         .timer {
             font-size: 18px;
             font-weight: bold;
             color: #4fc3f7;
         }
-        
+
         .feedback-message {
             padding: 10px;
             border-radius: 5px;
@@ -356,17 +352,17 @@ Copy
             font-weight: bold;
             display: none;
         }
-        
+
         .correct {
             background-color: rgba(100, 255, 100, 0.2);
             color: #64ff64;
         }
-        
+
         .incorrect {
             background-color: rgba(255, 100, 100, 0.2);
             color: #ff6464;
         }
-        
+
         .loading {
             position: fixed;
             top: 0;
@@ -379,7 +375,7 @@ Copy
             align-items: center;
             z-index: 9999;
         }
-        
+
         .rocket {
             width: 100px;
             height: 100px;
@@ -387,46 +383,72 @@ Copy
             clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
             animation: launch 2s forwards;
         }
-        
+
         @keyframes launch {
             0% {
                 transform: translateY(100vh) scale(1);
                 opacity: 1;
             }
+
             80% {
                 transform: translateY(0) scale(1);
                 opacity: 1;
             }
+
             100% {
                 transform: translateY(0) scale(0);
                 opacity: 0;
             }
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
-        
+
         @keyframes twinkle {
-            0% { opacity: 0.3; }
-            50% { opacity: 1; }
-            100% { opacity: 0.3; }
+            0% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.3;
+            }
         }
-        
+
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
-        
+
         @media print {
             body * {
                 visibility: hidden;
             }
-            #certificate, #certificate * {
+
+            #certificate,
+            #certificate * {
                 visibility: visible;
             }
+
             #certificate {
                 position: absolute;
                 left: 0;
@@ -436,68 +458,71 @@ Copy
                 background-color: white;
                 color: black;
             }
+
             .no-print {
                 display: none;
             }
         }
-        
+
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
             }
-            
+
             .options label {
                 padding: 8px;
             }
-            
+
             #userName {
                 width: 90%;
             }
         }
     </style>
 </head>
+
 <body>
     <a href="links.html" class="home-button">Home</a>
     <div class="loading">
         <div class="rocket"></div>
     </div>
-    
+
     <div class="container">
         <div class="stars"></div>
-        
+
         <div id="quiz-container">
             <div class="quiz-intro">
                 <h1>Cosmic IQ Challenge</h1>
-                <p>Test your knowledge of space, planets, black holes, and the universe with this 25-question quiz. After submitting, you'll receive your cosmic IQ score, a grade, and a printable certificate!</p>
+                <p>Test your knowledge of space, planets, black holes, and the universe with this 25-question quiz.
+                    After submitting, you'll receive your cosmic IQ score, a grade, and a printable certificate!</p>
                 <button id="startQuiz">Begin Your Cosmic Journey</button>
             </div>
-            
+
             <div id="quiz-content" style="display: none;">
                 <div class="progress-container">
                     <div class="progress-bar"></div>
                 </div>
-                
+
                 <div class="timer-container">
                     <div class="timer">00:00</div>
                 </div>
-                
+
                 <div class="question-container">
                     <!-- Questions will be dynamically inserted here -->
                 </div>
-                
+
                 <div class="nav-buttons">
                     <button id="prevBtn" style="display: none;">Previous</button>
                     <div class="feedback-message"></div>
                     <button id="nextBtn">Next</button>
                 </div>
-                
+
                 <div class="submit-section">
                     <input type="text" id="userName" placeholder="Enter your name for certificate">
                     <button id="submitBtn">Complete Quiz & See Results</button>
                 </div>
             </div>
         </div>
-        
+
         <div id="results">
             <h2>Your Cosmic IQ Results</h2>
             <div id="scoreDisplay"></div>
@@ -507,7 +532,7 @@ Copy
             <button id="certificateBtn">Generate Certificate</button>
             <button id="retakeBtn">Retake Quiz</button>
         </div>
-        
+
         <div id="certificate">
             <div class="certificate-decoration">
                 <div class="certificate-corner top-left"></div>
@@ -515,7 +540,7 @@ Copy
                 <div class="certificate-corner bottom-left"></div>
                 <div class="certificate-corner bottom-right"></div>
             </div>
-            
+
             <div class="certificate-header">Certificate of Cosmic Achievement</div>
             <div class="certificate-text">This certifies that</div>
             <div class="certificate-name" id="certName">[Participant Name]</div>
@@ -783,7 +808,7 @@ Copy
                 answer: "d"
             }
         ];
-        
+
         // DOM elements
         const quizIntro = document.querySelector('.quiz-intro');
         const quizContent = document.getElementById('quiz-content');
@@ -801,7 +826,7 @@ Copy
         const timerElement = document.querySelector('.timer');
         const feedbackMessage = document.querySelector('.feedback-message');
         const loadingScreen = document.querySelector('.loading');
-        
+
         // Quiz variables
         let currentQuestionIndex = 0;
         let userAnswers = [];
@@ -809,61 +834,61 @@ Copy
         let startTime;
         let timerInterval;
         let totalTime = 0;
-        
+
         // Create stars for background effect
         function createStars() {
             const starsContainer = document.querySelector('.stars');
             const starCount = 100;
-            
+
             for (let i = 0; i < starCount; i++) {
                 const star = document.createElement('div');
                 star.classList.add('star');
-                
+
                 // Random position
                 const top = Math.random() * 100;
                 const left = Math.random() * 100;
-                
+
                 // Random size
                 const size = Math.random() * 3;
-                
+
                 // Random delay for twinkling
                 const delay = Math.random() * 2;
-                
+
                 star.style.top = `${top}%`;
                 star.style.left = `${left}%`;
                 star.style.width = `${size}px`;
                 star.style.height = `${size}px`;
                 star.style.animationDelay = `${delay}s`;
-                
+
                 starsContainer.appendChild(star);
             }
         }
-        
+
         // Shuffle questions
         function shuffleQuestions() {
             // Create a copy of the original questions array
             const questionsCopy = [...questions];
             shuffledQuestions = [];
-            
+
             // Fisher-Yates shuffle algorithm
             while (questionsCopy.length > 0) {
                 const randomIndex = Math.floor(Math.random() * questionsCopy.length);
                 shuffledQuestions.push(questionsCopy.splice(randomIndex, 1)[0]);
             }
-            
+
             // Initialize user answers array with null values
             userAnswers = new Array(shuffledQuestions.length).fill(null);
         }
-        
+
         // Create question elements
         function createQuestions() {
             questionContainer.innerHTML = '';
-            
+
             shuffledQuestions.forEach((q, index) => {
                 const questionElement = document.createElement('div');
                 questionElement.classList.add('question');
                 questionElement.dataset.index = index;
-                
+
                 let optionsHTML = '';
                 q.options.forEach(option => {
                     optionsHTML += `
@@ -873,27 +898,27 @@ Copy
                         </label>
                     `;
                 });
-                
+
                 questionElement.innerHTML = `
                     <h3>${index + 1}. ${q.question}</h3>
                     <div class="options">
                         ${optionsHTML}
                     </div>
                 `;
-                
+
                 questionContainer.appendChild(questionElement);
             });
-            
+
             // Show first question
             document.querySelector('.question[data-index="0"]').classList.add('active');
         }
-        
+
         // Update progress bar
         function updateProgress() {
             const progress = ((currentQuestionIndex + 1) / shuffledQuestions.length) * 100;
             progressBar.style.width = `${progress}%`;
         }
-        
+
         // Show the specified question
         function showQuestion(index) {
             // Hide all questions
@@ -901,18 +926,18 @@ Copy
             questions.forEach(q => {
                 q.classList.remove('active', 'prev');
             });
-            
+
             // Show current question
             const currentQuestion = document.querySelector(`.question[data-index="${index}"]`);
             currentQuestion.classList.add('active');
-            
+
             // Update navigation buttons
             prevBtn.style.display = index > 0 ? 'block' : 'none';
             nextBtn.textContent = index === shuffledQuestions.length - 1 ? 'Finish Quiz' : 'Next';
-            
+
             // Update progress
             updateProgress();
-            
+
             // Restore user's previous answer if any
             if (userAnswers[index] !== null) {
                 const selectedOption = document.querySelector(`.question[data-index="${index}"] input[value="${userAnswers[index]}"]`);
@@ -921,73 +946,73 @@ Copy
                     selectedOption.parentElement.classList.add('selected');
                 }
             }
-            
+
             // Show submit section on last question
             submitSection.style.display = index === shuffledQuestions.length - 1 ? 'block' : 'none';
         }
-        
+
         // Handle option selection
         function handleOptionSelection() {
-            document.addEventListener('change', function(e) {
+            document.addEventListener('change', function (e) {
                 if (e.target.type === 'radio') {
                     // Remove previous selection highlight
                     const options = e.target.closest('.options').querySelectorAll('label');
                     options.forEach(opt => opt.classList.remove('selected'));
-                    
+
                     // Add highlight to selected option
                     e.target.parentElement.classList.add('selected');
-                    
+
                     // Save user's answer
                     const questionIndex = parseInt(e.target.name.substring(1));
                     userAnswers[questionIndex] = e.target.value;
                 }
             });
         }
-        
+
         // Start timer
         function startTimer() {
             startTime = new Date();
-            
-            timerInterval = setInterval(function() {
+
+            timerInterval = setInterval(function () {
                 const now = new Date();
                 const elapsed = Math.floor((now - startTime) / 1000);
                 const minutes = Math.floor(elapsed / 60);
                 const seconds = elapsed % 60;
-                
+
                 timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
             }, 1000);
         }
-        
+
         // Calculate score
         function calculateScore() {
             let correctAnswers = 0;
-            
+
             userAnswers.forEach((answer, index) => {
                 if (answer === shuffledQuestions[index].answer) {
                     correctAnswers++;
                 }
             });
-            
+
             return correctAnswers;
         }
-        
+
         // Calculate IQ based on score (for fun, not a real IQ test)
         function calculateIQ(score) {
             // Base IQ of 100 with adjustment based on score
             const baseIQ = 100;
             const maxBonus = 50;
-            
+
             // Calculate percentage correct and add bonus to base IQ
             const percentCorrect = score / shuffledQuestions.length;
             const iqScore = baseIQ + Math.round(percentCorrect * maxBonus);
-            
+
             return iqScore;
         }
-        
+
         // Determine grade based on score
         function determineGrade(score) {
             const percentage = (score / shuffledQuestions.length) * 100;
-            
+
             if (percentage >= 90) return "Cosmic Genius";
             if (percentage >= 80) return "Star Master";
             if (percentage >= 70) return "Galaxy Explorer";
@@ -998,11 +1023,11 @@ Copy
             if (percentage >= 20) return "Atmosphere Breacher";
             return "Earth Bound";
         }
-        
+
         // Get feedback based on score
         function getFeedback(score) {
             const percentage = (score / shuffledQuestions.length) * 100;
-            
+
             if (percentage >= 90) {
                 return "Incredible! Your knowledge of the cosmos is truly astronomical. You would make Neil deGrasse Tyson proud!";
             } else if (percentage >= 80) {
@@ -1023,30 +1048,30 @@ Copy
                 return "We all start somewhere on our journey through the stars. Keep your curiosity alive and try again!";
             }
         }
-        
+
         // Display results
         function showResults() {
             // Stop timer
             clearInterval(timerInterval);
             totalTime = timerElement.textContent;
-            
+
             // Calculate score
             const score = calculateScore();
             const iqScore = calculateIQ(score);
             const grade = determineGrade(score);
             const feedback = getFeedback(score);
-            
+
             // Update results section
             document.getElementById('scoreDisplay').innerHTML = `<p>You scored <strong>${score}</strong> out of ${shuffledQuestions.length} correct!</p>`;
             document.getElementById('gradeDisplay').innerHTML = `<p>Your Cosmic Grade: <strong>${grade}</strong></p><p>Your Cosmic IQ: <strong>${iqScore}</strong></p>`;
             document.getElementById('feedback').innerHTML = `<p>${feedback}</p>`;
             document.getElementById('timeDisplay').innerHTML = `<p>Time taken: ${totalTime}</p>`;
-            
+
             // Show results section
             quizContent.style.display = 'none';
             resultsSection.style.display = 'block';
         }
-        
+
         // Generate certificate
         function generateCertificate() {
             const name = document.getElementById('userName').value || 'Space Explorer';
@@ -1054,7 +1079,7 @@ Copy
             const iqScore = calculateIQ(score);
             const grade = determineGrade(score);
             const currentDate = new Date().toLocaleDateString();
-            
+
             // Update certificate information
             document.getElementById('certName').textContent = name;
             document.getElementById('certScore').textContent = score;
@@ -1062,74 +1087,74 @@ Copy
             document.getElementById('certGrade').textContent = grade;
             document.getElementById('certDate').textContent = currentDate;
             document.getElementById('certTime').textContent = totalTime;
-            
+
             // Show certificate
             resultsSection.style.display = 'none';
             certificateSection.style.display = 'block';
         }
-        
+
         // Reset quiz for retake
         function resetQuiz() {
             // Reset variables
             currentQuestionIndex = 0;
             userAnswers = [];
-            
+
             // Reset display
             certificateSection.style.display = 'none';
             resultsSection.style.display = 'none';
             quizIntro.style.display = 'block';
             quizContent.style.display = 'none';
-            
+
             // Clear timer
             clearInterval(timerInterval);
             timerElement.textContent = '00:00';
         }
-        
+
         // Initialize the quiz
         function initQuiz() {
             // Create stars effect
             createStars();
-            
+
             // Add event listeners
-            startBtn.addEventListener('click', function() {
+            startBtn.addEventListener('click', function () {
                 // Hide intro, show content
                 quizIntro.style.display = 'none';
                 quizContent.style.display = 'block';
-                
+
                 // Shuffle and create questions
                 shuffleQuestions();
                 createQuestions();
-                
+
                 // Set up UI
                 updateProgress();
                 showQuestion(currentQuestionIndex);
-                
+
                 // Start timer
                 startTimer();
             });
-            
-            prevBtn.addEventListener('click', function() {
+
+            prevBtn.addEventListener('click', function () {
                 if (currentQuestionIndex > 0) {
                     currentQuestionIndex--;
                     showQuestion(currentQuestionIndex);
                 }
             });
-            
-            nextBtn.addEventListener('click', function() {
+
+            nextBtn.addEventListener('click', function () {
                 // Check if an option is selected
                 if (userAnswers[currentQuestionIndex] === null) {
                     feedbackMessage.textContent = "Please select an answer before continuing.";
                     feedbackMessage.className = "feedback-message incorrect";
                     feedbackMessage.style.display = 'block';
-                    
+
                     // Hide message after a delay
                     setTimeout(() => {
                         feedbackMessage.style.display = 'none';
                     }, 2000);
-                    
+
                     return;
                 }
-                
+
                 // If on last question and "Finish Quiz" is clicked
                 if (currentQuestionIndex === shuffledQuestions.length - 1 && nextBtn.textContent === 'Finish Quiz') {
                     // Check if name is entered
@@ -1137,58 +1162,59 @@ Copy
                         feedbackMessage.textContent = "Please enter your name for the certificate.";
                         feedbackMessage.className = "feedback-message incorrect";
                         feedbackMessage.style.display = 'block';
-                        
+
                         // Hide message after a delay
                         setTimeout(() => {
                             feedbackMessage.style.display = 'none';
                         }, 2000);
-                        
+
                         return;
                     }
-                    
+
                     showResults();
                     return;
                 }
-                
+
                 // Move to next question
                 if (currentQuestionIndex < shuffledQuestions.length - 1) {
                     currentQuestionIndex++;
                     showQuestion(currentQuestionIndex);
                 }
             });
-            
-            submitBtn.addEventListener('click', function() {
+
+            submitBtn.addEventListener('click', function () {
                 // Check if name is entered
                 if (document.getElementById('userName').value.trim() === '') {
                     feedbackMessage.textContent = "Please enter your name for the certificate.";
                     feedbackMessage.className = "feedback-message incorrect";
                     feedbackMessage.style.display = 'block';
-                    
+
                     // Hide message after a delay
                     setTimeout(() => {
                         feedbackMessage.style.display = 'none';
                     }, 2000);
-                    
+
                     return;
                 }
-                
+
                 showResults();
             });
-            
+
             certificateBtn.addEventListener('click', generateCertificate);
             retakeBtn.addEventListener('click', resetQuiz);
-            
+
             // Set up option selection handling
             handleOptionSelection();
-            
+
             // Hide loading screen after a delay
             setTimeout(() => {
                 loadingScreen.style.display = 'none';
             }, 2000);
         }
-        
+
         // Start quiz when page loads
         window.addEventListener('load', initQuiz);
     </script>
 </body>
+
 </html>
