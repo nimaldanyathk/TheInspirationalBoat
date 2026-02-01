@@ -6,8 +6,8 @@ const model = [
     year: "4,500,000,000",
     type: "YELLOW DWARF STAR",
     radius: "696,340 km",
-    planet: "sun.png",
-    galaxy: "sunbag.jpg",
+    planet: "../assets/images/sun.png",
+    galaxy: "../assets/images/sunbag.jpg",
   },
   {
     name: "EARTH",
@@ -16,8 +16,8 @@ const model = [
     year: "4.54 billion",
     type: "terrestrial",
     radius: "6,371 km",
-    planet: "earth.png",
-    galaxy: "earthbag.jpg",
+    planet: "../assets/images/earth.png",
+    galaxy: "../assets/images/earthbag.jpg",
   },
   {
     name: "MARS",
@@ -25,8 +25,8 @@ const model = [
     year: "4.6 billion",
     type: "terrestrial",
     radius: "3,389.5 km",
-    planet: "mars.png",
-    galaxy: "marsbag.jpg",
+    planet: "../assets/images/mars.png",
+    galaxy: "../assets/images/marsbag.jpg",
   },
   {
     name: "JUPITER",
@@ -35,8 +35,8 @@ const model = [
     year: "4.6 billion",
     type: "gas giant",
     radius: "69,911 km",
-    planet: "jupiter.png",
-    galaxy: "jupiterbag.jpg",
+    planet: "../assets/images/jupiter.png",
+    galaxy: "../assets/images/jupiterbag.jpg",
   },
   {
     name: "SATURN",
@@ -45,8 +45,8 @@ const model = [
     year: "4.6 billion",
     type: "gas giant",
     radius: "58,232 km",
-    planet: "saturn.jpg",
-    galaxy: "saturnbag.jpg",
+    planet: "../assets/images/saturn.jpg",
+    galaxy: "../assets/images/saturnbag.jpg",
   },
   {
     name: "URANUS",
@@ -55,8 +55,8 @@ const model = [
     year: "4.5 billion",
     type: "ice giant",
     radius: "25,362 km",
-    planet:"uranus.png",
-    galaxy: "uranusbag.avif",
+    planet: "../assets/images/uranus.png",
+    galaxy: "../assets/images/uranusbag.avif",
   },
   {
     name: "NEPTUNE",
@@ -65,8 +65,8 @@ const model = [
     year: "4.5 billion",
     type: "ice giant",
     radius: "24,622 km",
-    planet: "neptune.png",
-    galaxy: "neptunebag.jpeg",
+    planet: "../assets/images/neptune.png",
+    galaxy: "../assets/images/neptunebag.jpeg",
   }
 ];
 
@@ -93,7 +93,7 @@ right.addEventListener("click", () => {
 left.addEventListener("click", () => {
   if (index > 0) {
     index--;
-    degrees -= 180 ;
+    degrees -= 180;
     updatePlanetInfo();
   }
 });
